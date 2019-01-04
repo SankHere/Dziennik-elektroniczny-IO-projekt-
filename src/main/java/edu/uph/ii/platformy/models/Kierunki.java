@@ -22,7 +22,6 @@ public class Kierunki {
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
-    @InvalidValues(ignoreCase = true, values = {"Informatyka","Matematyka", "Chemia"})
     private String name;
 
     @Positive

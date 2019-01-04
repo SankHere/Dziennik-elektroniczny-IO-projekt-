@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -25,13 +26,21 @@ public class Egzamin {
     @InvalidValues(ignoreCase = true, values = {"Napisz kod","Rózniczkowanie", "Probówka i ja"})
     private String name;
 
+    @Column(name="data_egzaminu", nullable = false)
+    private Date dataEgzaminu;
 
-    public Egzamin(long id, String name) {
-        this(name);
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_przedmiotu", nullable = false)
+    private Przedmiot przedmiot;
+
+    public Egzamin(long id, String name, Date dataEgzaminu) {
+        this(name, dataEgzaminu);
         this.id = id;
     }
 
-    public Egzamin(String name) {
+    public Egzamin(String name, Date dataEgzaminu) {
         this.name = name;
+        this.dataEgzaminu = dataEgzaminu;
     }
 }

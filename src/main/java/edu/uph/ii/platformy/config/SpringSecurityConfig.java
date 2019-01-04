@@ -37,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("useradmin1").password(encoder.encode("useradmin")).roles("USER","ADMIN");
     }*/
 
-
+/*
     @Bean
     @Profile(ProfileNames.INMEMORY)
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
@@ -45,19 +45,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         User.UserBuilder userBuilder = User.builder();
 
         UserDetails user = userBuilder
-                .username("user1")
+                .username("user")
                 .password(passwordEncoder.encode("user"))
                 .roles("USER")
                 .build();
 
         UserDetails admin = userBuilder
-                .username("admin1")
+                .username("admin")
                 .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN")
                 .build();
 
         UserDetails test = userBuilder
-                .username("useradmin1")
+                .username("useradmin")
                 .password(passwordEncoder.encode("useradmin"))
                 .roles("USER", "ADMIN")
                 .build();
@@ -69,7 +69,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return manager;
     }
-
+*/
     @Bean
     @Profile(ProfileNames.DATABASE)
     public PasswordEncoder bCryptPasswordEncoder() {

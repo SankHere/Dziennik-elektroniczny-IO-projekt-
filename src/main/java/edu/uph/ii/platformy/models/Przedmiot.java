@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -24,9 +25,12 @@ public class Przedmiot {
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
-    @InvalidValues(ignoreCase = true, values = {"Programowanie","Dyskretna", "Technologie Sieciowe"})
     private String name;
 
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_kierunku", nullable = false)
+    private Kierunki kierunki;
 
     public Przedmiot(long id, String name) {
         this(name);

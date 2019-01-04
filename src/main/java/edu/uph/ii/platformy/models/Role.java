@@ -32,7 +32,12 @@ public class Role {
 
     public enum Types{
         ROLE_ADMIN,
+        ROLE_RADA,
+        ROLE_NAUCZYCIEL,
+        ROLE_DZIEKANAT,
+        ROLE_STUDENT,
         ROLE_USER
+
     }
 
 }

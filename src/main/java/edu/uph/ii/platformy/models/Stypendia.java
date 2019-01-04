@@ -21,21 +21,19 @@ public class Stypendia {
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
-    @InvalidValues(ignoreCase = true, values = {"Male", "Srednie", "Duze"})
     private String name;
 
     @Positive
     @Max(1000000)
-    private Float kwota;
+    private Double kwota;
 
-    public Stypendia(long id, String name, Float kwota) {
+    public Stypendia(long id, String name, Double kwota) {
         this(name, kwota);
         this.id = id;
     }
 
-    public Stypendia(String name, Float kwota) {
+    public Stypendia(String name, Double kwota) {
         this.name = name;
         this.kwota = kwota;
-
     }
 }

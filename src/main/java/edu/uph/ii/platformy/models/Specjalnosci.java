@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -25,6 +26,10 @@ public class Specjalnosci {
     @InvalidValues(ignoreCase = true, values = {"BazyDanych", "Sieci", "Chemia kwantowa"})
     private String name;
 
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_kierunku", nullable = false)
+    private Kierunki kierunki;
 
     public Specjalnosci(long id, String name ) {
         this(name);

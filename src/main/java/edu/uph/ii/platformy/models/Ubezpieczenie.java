@@ -19,19 +19,18 @@ public class Ubezpieczenie {
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
-    @InvalidValues(ignoreCase = true, values = {"PZU", "Warta", "Axa"})
     private String name;
 
     @Positive
     @Max(1000000)
-    private Float price;
+    private Double price;
 
-    public Ubezpieczenie(long id, String name, Float price) {
+    public Ubezpieczenie(long id, String name, Double price) {
         this(name, price);
         this.id = id;
     }
 
-    public Ubezpieczenie(String name, Float price) {
+    public Ubezpieczenie(String name, Double price) {
         this.name = name;
         this.price = price;
 

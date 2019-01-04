@@ -1,12 +1,18 @@
 package edu.uph.ii.platformy.models;
 
+import edu.uph.ii.platformy.validators.annotations.InvalidValues;
 import edu.uph.ii.platformy.validators.annotations.UniqueUsername;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -34,21 +40,74 @@ public class User {
         return password == null || passwordConfirm == null || password.equals(passwordConfirm);
     }
 
+    @NotBlank
+    //@Size(min = 2, max = 30)
+    @Length(min = 2, max = 30)
+    //@InvalidValues(ignoreCase = true, values = {"Artur"})
+    private String name;
+
+
+    @NotBlank
+    //@Size(min = 2, max = 30)
+    @Length(min = 2, max = 30)
+
+    private String surname;
+
+
+    @NotBlank
+    //@Size(min = 2, max = 30)
+    @Length(min = 2, max = 30)
+    private String email;
+
+    @Column(name="data_urodzenia", nullable = false)
+    private Date dataUrodzenia;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+/*
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "oceny",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "egzamin_id"))
+    private Set<Egzamin> egzamins;
+*/
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_kierunku", nullable = false)
+    private Kierunki kierunki;
 
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_specjalnosci", nullable = false)
+    private Specjalnosci specjalnosci;
 
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_stypendium", nullable = false)
+    private Stypendia stypendia;
 
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_ubezbieczenia", nullable = false)
+    private Ubezpieczenie ubezpieczenie;
 
-    public User(String username){
-        this(username, false);
+    public User(String username, String name, String surname, String email, Date dataUrodzenia, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
+        this(username, false, name, surname, email, dataUrodzenia, kierunki, specjalnosci, stypendia, ubezpieczenie);
     }
 
-    public User(String username, boolean enabled){
+    public User(String username, boolean enabled, String name, String surname, String email, Date dataUrodzenia, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
         this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.dataUrodzenia = dataUrodzenia;
+        this.kierunki = kierunki;
+        this.specjalnosci = specjalnosci;
+        this.stypendia = stypendia;
+        this.ubezpieczenie = ubezpieczenie;
         this.enabled = enabled;
     }
 
