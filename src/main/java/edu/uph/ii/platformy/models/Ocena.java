@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 @Table(name = "ocena")
 @Getter @Setter
 public class Ocena {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
