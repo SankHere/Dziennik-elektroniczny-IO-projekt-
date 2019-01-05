@@ -27,7 +27,7 @@ public class Kierunki {
     @Positive
     private int liczbaMiejsc;
 
-    @Column(name="created_date", nullable = false)
+    @Column(name="created_date")
     private Date createdDate;
 
     public Kierunki(long id, String name, int liczbaMiejsc, Date createdDate) {

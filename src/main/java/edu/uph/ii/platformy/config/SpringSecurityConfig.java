@@ -68,8 +68,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         manager.createUser(test);
 
         return manager;
-    }
-*/
+    }*/
+
     @Bean
     @Profile(ProfileNames.DATABASE)
     public PasswordEncoder bCryptPasswordEncoder() {
