@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KierunkiRepository extends JpaRepository<Kierunki, Integer> {
 
-    //Ubezpieczenie findByUbezpieczenie(Role.Types type);
+    Kierunki findKierunekByName(Kierunki.Names name);
 }

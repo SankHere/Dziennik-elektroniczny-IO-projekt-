@@ -30,26 +30,46 @@
 
                 <div class="form-group">
 
-                    <label for="username" class="bmd-label-floating">nazwa użytkownika:</label>
+                    <label for="username" class="bmd-label-floating">Nazwa użytkownika:</label>
                     <form:input path="username" cssClass="form-control"
                                 cssErrorClass="form-control is-invalid"
                                 required="true" autofocus="true" />
                 </div>
 
                 <div class="form-group">
-                    <label for="username" class="bmd-label-floating">hasło:</label>
+                    <label for="username" class="bmd-label-floating">Hasło:</label>
                     <form:password path="password" cssClass="form-control"
                                    cssErrorClass="form-control is-invalid"
                                    required="true" />
                 </div>
 
                 <div class="form-group">
-                    <label for="username" class="bmd-label-floating">powtórzone hasło:</label>
+                    <label for="username" class="bmd-label-floating">Powtórzone hasło:</label>
                     <form:password path="passwordConfirm" cssClass="form-control"
                                    cssErrorClass="form-control is-invalid"
                                    required="true"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="username" class="bmd-label-floating">Imie:</label>
+                    <form:password path="name" cssClass="form-control"
+                                   cssErrorClass="form-control is-invalid"
+                                   required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="bmd-label-floating">Nazwisko:</label>
+                    <form:password path="surname" cssClass="form-control"
+                                   cssErrorClass="form-control is-invalid"
+                                   required="true"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="bmd-label-floating">Email:</label>
+                    <form:password path="email" cssClass="form-control"
+                                   cssErrorClass="form-control is-invalid"
+                                   required="true"/>
+                </div>
 
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">

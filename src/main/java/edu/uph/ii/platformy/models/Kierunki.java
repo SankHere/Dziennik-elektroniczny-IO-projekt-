@@ -34,7 +34,9 @@ public class Kierunki {
         this(name, liczbaMiejsc, createdDate);
         this.id = id;
     }
-
+    public enum Names{
+        Brak,
+    }
     public Kierunki(String name, int liczbaMiejsc, Date createdDate) {
         this.name = name;
         this.liczbaMiejsc = liczbaMiejsc;

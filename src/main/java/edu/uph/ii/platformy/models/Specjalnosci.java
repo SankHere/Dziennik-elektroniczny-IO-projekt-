@@ -36,6 +36,10 @@ public class Specjalnosci {
         this.id = id;
     }
 
+    public enum Names{
+        Brak,
+    }
+
     public Specjalnosci(String name) {
         this.name = name;
     }

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 @Log4j2
 public class GlobalControlerAdvice {
 
-
     @ExceptionHandler({JDBCConnectionException.class, DataIntegrityViolationException.class})
     public String handleDbError(Model model, HttpServletRequest req, Exception ex) {
         log.error("Request: " + req.getRequestURL() + " raised " + ex);
@@ -23,7 +22,6 @@ public class GlobalControlerAdvice {
 
         return "errors/databaseErrorView";
     }
-
 
 
 }

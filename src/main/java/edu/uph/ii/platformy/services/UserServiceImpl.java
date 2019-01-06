@@ -2,9 +2,8 @@ package edu.uph.ii.platformy.services;
 
 
 import edu.uph.ii.platformy.config.ProfileNames;
-import edu.uph.ii.platformy.models.Role;
-import edu.uph.ii.platformy.repositories.RoleRepository;
-import edu.uph.ii.platformy.repositories.UserRepository;
+import edu.uph.ii.platformy.models.*;
+import edu.uph.ii.platformy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,6 +38,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UbezpieczenieRepository ubezpieczenieRepository;
+
+    @Autowired
+    private SpecjalnosciRepository specjalnosciRepository;
+
+    @Autowired
+    private KierunkiRepository kierunkiRepository;
+
+    @Autowired
+    private StypendiaRepository stypendiaRepository;
+
     @Override
     //bez adnotacji @Transactional sesja jest zamykana po wywołaniu findByUsername, co uniemożliwia dociągnięcie ról, gdyż fetch=EAGER.
     //ponadto, musi być włączone zarządzanie transakcjami @EnableTransactionManagement
@@ -69,8 +80,24 @@ public class UserServiceImpl implements UserService {
     public void save(edu.uph.ii.platformy.models.User user) {
 
         Role userRole = roleRepository.findRoleByType(Role.Types.ROLE_USER);
+        Kierunki userKierunek = kierunkiRepository.findKierunekByName(Kierunki.Names.Brak);
+        Specjalnosci userSpecjalosc = specjalnosciRepository.findSpecjalnoscByName(Specjalnosci.Names.Brak);
+        Ubezpieczenie userUbezpieczenie = ubezpieczenieRepository.findUbezpieczenieByName(Ubezpieczenie.Names.Brak);
+        Stypendia userStypendia = stypendiaRepository.findStypendiaByName(Stypendia.Names.Brak);
+
+
         List roles = Arrays.asList(userRole);
+        List kierunek = Arrays.asList(userKierunek);
+        List specjalnosc = Arrays.asList(userSpecjalosc);
+        List ubezpieczenie = Arrays.asList(userUbezpieczenie);
+        List stypendia = Arrays.asList(userStypendia);
+
         user.setRoles(new HashSet<>(roles));
+        user.setKierunki(new HashSet<>(kierunek));
+        user.setSpecjalnosci(new HashSet<>(specjalnosc));
+        user.setUbezpieczenie(new HashSet<>(ubezpieczenie));
+        user.setStypendia(new HashSet<>(stypendia));
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setPasswordConfirm(null);//wyzerowanie jest potrzebne ze względu na walidację
         userRepository.saveAndFlush(user);
