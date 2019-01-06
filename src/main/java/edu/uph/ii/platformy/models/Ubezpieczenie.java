@@ -29,9 +29,7 @@ public class Ubezpieczenie {
         this(name, price);
         this.id = id;
     }
-    public enum Names{
-        Brak,
-    }
+
     public Ubezpieczenie(String name, Double price) {
         this.name = name;
         this.price = price;

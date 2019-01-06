@@ -80,10 +80,10 @@ public class UserServiceImpl implements UserService {
     public void save(edu.uph.ii.platformy.models.User user) {
 
         Role userRole = roleRepository.findRoleByType(Role.Types.ROLE_USER);
-        Kierunki userKierunek = kierunkiRepository.findKierunekByName(Kierunki.Names.Brak);
-        Specjalnosci userSpecjalosc = specjalnosciRepository.findSpecjalnoscByName(Specjalnosci.Names.Brak);
-        Ubezpieczenie userUbezpieczenie = ubezpieczenieRepository.findUbezpieczenieByName(Ubezpieczenie.Names.Brak);
-        Stypendia userStypendia = stypendiaRepository.findStypendiaByName(Stypendia.Names.Brak);
+        Kierunki userKierunek = kierunkiRepository.findByKierunekname("Brak");
+        Specjalnosci userSpecjalosc = specjalnosciRepository.findBySpecjalnoscname("Brak");
+        Ubezpieczenie userUbezpieczenie = ubezpieczenieRepository.findByUbezpieczenianame("Brak");
+        Stypendia userStypendia = stypendiaRepository.findByStypendianame("Brak");
 
 
         List roles = Arrays.asList(userRole);

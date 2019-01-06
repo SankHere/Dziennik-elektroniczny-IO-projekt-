@@ -32,9 +32,6 @@ public class Stypendia {
         this.id = id;
     }
 
-    public enum Names{
-        Brak,
-    }
 
     public Stypendia(String name, Double kwota) {
         this.name = name;

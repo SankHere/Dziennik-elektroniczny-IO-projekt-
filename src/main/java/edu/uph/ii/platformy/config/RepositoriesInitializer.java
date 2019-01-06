@@ -84,7 +84,7 @@ public class RepositoriesInitializer {
                     pr5.setKierunki(ki2);
                     przedmiotRepository.save(pr5);
                     //uczen nie powinien miec zadnego przedmiotu to bedzie tutaj nalezec
-                    Przedmiot pr6 = new Przedmiot("BRAK");
+                    Przedmiot pr6 = new Przedmiot("Brak");
                     pr6.setKierunki(ki4);
                     przedmiotRepository.save(pr6);
 
@@ -122,7 +122,7 @@ public class RepositoriesInitializer {
                     Stypendia st3 = new Stypendia("duze", 1300.45);
                     stypendiaRepository.save(st3);
 
-                    Stypendia st4 = new Stypendia("BRAK", 5.0);
+                    Stypendia st4 = new Stypendia("Brak", 5.0);
                     stypendiaRepository.save(st4);
 
                     //tworzenie ubezpieczenie
