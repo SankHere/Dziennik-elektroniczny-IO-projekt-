@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UbezpieczenieRepository extends JpaRepository<Ubezpieczenie, Integer> {
 
-    Ubezpieczenie findByUbezpieczenianame(String name);
+    Ubezpieczenie findByName(String name);
 }

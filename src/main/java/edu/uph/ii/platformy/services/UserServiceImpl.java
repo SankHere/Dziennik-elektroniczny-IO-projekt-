@@ -15,10 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -80,23 +77,11 @@ public class UserServiceImpl implements UserService {
     public void save(edu.uph.ii.platformy.models.User user) {
 
         Role userRole = roleRepository.findRoleByType(Role.Types.ROLE_USER);
-        Kierunki userKierunek = kierunkiRepository.findByKierunekname("Brak");
-        Specjalnosci userSpecjalosc = specjalnosciRepository.findBySpecjalnoscname("Brak");
-        Ubezpieczenie userUbezpieczenie = ubezpieczenieRepository.findByUbezpieczenianame("Brak");
-        Stypendia userStypendia = stypendiaRepository.findByStypendianame("Brak");
+                List roles = Collections.singletonList(userRole);
 
-
-        List roles = Arrays.asList(userRole);
-        List kierunek = Arrays.asList(userKierunek);
-        List specjalnosc = Arrays.asList(userSpecjalosc);
-        List ubezpieczenie = Arrays.asList(userUbezpieczenie);
-        List stypendia = Arrays.asList(userStypendia);
 
         user.setRoles(new HashSet<>(roles));
-        user.setKierunki(new HashSet<>(kierunek));
-        user.setSpecjalnosci(new HashSet<>(specjalnosc));
-        user.setUbezpieczenie(new HashSet<>(ubezpieczenie));
-        user.setStypendia(new HashSet<>(stypendia));
+
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setPasswordConfirm(null);//wyzerowanie jest potrzebne ze względu na walidację

@@ -71,6 +71,12 @@
                                    required="true"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="username" class="bmd-label-floating">dataRejestracji:</label>
+                    <form:password path="dataRejestracji" cssClass="form-control"
+                                   cssErrorClass="form-control is-invalid"
+                                   required="true"/>
+                </div>
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <input type="submit" class="btn btn-success" value="Zarejestruj"/>

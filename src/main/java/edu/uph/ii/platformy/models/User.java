@@ -59,8 +59,8 @@ public class User {
     @Length(min = 2, max = 30)
     private String email;
 
-    @Column(name="data_urodzenia", nullable = false)
-    private Date dataUrodzenia;
+    @Column(name="data_rejestracji", nullable = false)
+    private Date dataRejestracji;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -78,32 +78,36 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_kierunku", nullable = false)
     private Kierunki kierunki;
+//    private Set<Kierunki> kierunki;
 
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_specjalnosci", nullable = false)
+  //  private Set<Specjalnosci> specjalnosci;
     private Specjalnosci specjalnosci;
 
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_stypendium", nullable = false)
+    //private Set<Stypendia> stypendia;
     private Stypendia stypendia;
 
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_ubezbieczenia", nullable = false)
+    //private Set<Ubezpieczenie> ubezpieczenie;
     private Ubezpieczenie ubezpieczenie;
 
     public User(String username, String name, String surname, String email, Date dataUrodzenia, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
         this(username, false, name, surname, email, dataUrodzenia, kierunki, specjalnosci, stypendia, ubezpieczenie);
     }
 
-    public User(String username, boolean enabled, String name, String surname, String email, Date dataUrodzenia, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
+    public User(String username, boolean enabled, String name, String surname, String email, Date dataRejestracji, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
         this.username = username;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.dataUrodzenia = dataUrodzenia;
+        this.dataRejestracji = dataRejestracji;
         this.kierunki = kierunki;
         this.specjalnosci = specjalnosci;
         this.stypendia = stypendia;

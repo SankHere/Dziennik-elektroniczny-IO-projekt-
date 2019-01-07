@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KierunkiRepository extends JpaRepository<Kierunki, Integer> {
 
-    Kierunki findByKierunekname(String name);
+    Kierunki findByName(String name);
 
 }

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SpecjalnosciRepository extends JpaRepository<Specjalnosci, Integer> {
 
-    Specjalnosci findBySpecjalnoscname(String name);
+    Specjalnosci findByName(String name);
 }
 

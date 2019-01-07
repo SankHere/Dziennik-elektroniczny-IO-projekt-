@@ -63,7 +63,7 @@ public class RepositoriesInitializer {
                     Kierunki ki3 = new Kierunki("Chemia", 50, new Date(11-11-2014));
                     kierunkiRepository.save(ki3);
                     //nauczyciel nie powinien miec zadnego przedmiotu to bedzie tutaj nalezec
-                    Kierunki ki4 = new Kierunki("BRAK", 1, new Date(01-01-2000));
+                    Kierunki ki4 = new Kierunki("Brak", 1, new Date(01-01-2000));
                     kierunkiRepository.save(ki4);
 
 
@@ -144,29 +144,54 @@ public class RepositoriesInitializer {
                     Role roleNauczyciel = roleRepository.save(new Role(Role.Types.ROLE_NAUCZYCIEL));
                     Role roleAdmin = roleRepository.save(new Role(Role.Types.ROLE_ADMIN));
 
-                    User user = new User("user", true, "imieUser", "nazUser", "emailUser", new Date(06-02-1999),ki4, si4, st4, ub4);
+
+                    User user = new User("user", true, "imieUser", "nazUser", "emailUser", new Date(06-02-2018), ki4, si4, st4, ub4);
                     user.setRoles(new HashSet<>(Arrays.asList(roleUser)));
+                    //user.setKierunki(new HashSet<>(Arrays.asList(userKierunek4)));
+                    //user.setSpecjalnosci(new HashSet<>(Arrays.asList(userSpecjalosc4)));
+                    //user.setUbezpieczenie(new HashSet<>(Arrays.asList(userUbezpieczenie4)));
+                    //user.setStypendia(new HashSet<>(Arrays.asList(userStypendia4)));
                     user.setPassword(passwordEncoder.encode("user"));
 
-                    User student = new User("student", true, "imieStudent", "nazStudent", "emailStudent", new Date(11-06-1997),ki1, si2, st3, ub2);
+                    User student = new User("student", true, "imieStudent", "nazStudent", "emailStudent", new Date(11-07-2018), ki1, si2, st3,ub2);
                     student.setRoles(new HashSet<>(Arrays.asList(roleStudent)));
+                    //student.setKierunki(new HashSet<>(Arrays.asList(userKierunek1)));
+                    //student.setSpecjalnosci(new HashSet<>(Arrays.asList(userSpecjalosc2)));
+                    //student.setUbezpieczenie(new HashSet<>(Arrays.asList(userUbezpieczenie2)));
+                    //student.setStypendia(new HashSet<>(Arrays.asList(userStypendia3)));
                     student.setPassword(passwordEncoder.encode("student"));
 
-                    User dziekanat = new User("dziekanat", true, "imieDziekanat", "nazDziekanat", "emailDziekanat", new Date(22-12-1983),ki4, si4, st4, ub2);
+                    User dziekanat = new User("dziekanat", true, "imieDziekanat", "nazDziekanat", "emailDziekanat", new Date(22-12-2018),  ki4, si4, st4, ub2);
                     dziekanat.setRoles(new HashSet<>(Arrays.asList(roleDziekanat)));
+                    //dziekanat.setKierunki(new HashSet<>(Arrays.asList(userKierunek4)));
+                    //dziekanat.setSpecjalnosci(new HashSet<>(Arrays.asList(userSpecjalosc4)));
+                    //dziekanat.setUbezpieczenie(new HashSet<>(Arrays.asList(userUbezpieczenie2)));
+                    //dziekanat.setStypendia(new HashSet<>(Arrays.asList(userStypendia4)));
                     dziekanat.setPassword(passwordEncoder.encode("dziekanat"));
 
-                    User nauczyciel = new User("nauczyciel1", true, "imieNauczyciel1", "nazNauczyciel1", "emailNauczyciel1", new Date(17-11-1977),ki4, si1, st4, ub1);
+                    User nauczyciel = new User("nauczyciel1", true, "imieNauczyciel1", "nazNauczyciel1", "emailNauczyciel1", new Date(17-11-2018), ki4, si1, st4, ub1);
                     nauczyciel.setRoles(new HashSet<>(Arrays.asList(roleNauczyciel)));
+                    //nauczyciel.setKierunki(new HashSet<>(Arrays.asList(userKierunek4)));
+                    //nauczyciel.setSpecjalnosci(new HashSet<>(Arrays.asList(userSpecjalosc1)));
+                    //nauczyciel.setUbezpieczenie(new HashSet<>(Arrays.asList(userUbezpieczenie1)));
+                    //nauczyciel.setStypendia(new HashSet<>(Arrays.asList(userStypendia4)));
                     nauczyciel.setPassword(passwordEncoder.encode("nauczyciel1"));
 
-                    User nauczycie2 = new User("nauczyciel2", true, "imieNauczyciel2", "nazNauczyciel2", "emailNauczyciel2", new Date(17-11-1977),ki4, si2, st4, ub4);
+                    User nauczycie2 = new User("nauczyciel2", true, "imieNauczyciel2", "nazNauczyciel2", "emailNauczyciel2", new Date(17-11-2018),  ki4, si2, st4, ub4);
                     nauczycie2.setRoles(new HashSet<>(Arrays.asList(roleNauczyciel, roleRada)));
+                    //nauczycie2.setKierunki(new HashSet<>(Arrays.asList(userKierunek4)));
+                    //nauczycie2.setSpecjalnosci(new HashSet<>(Arrays.asList(userSpecjalosc2)));
+                    //nauczycie2.setUbezpieczenie(new HashSet<>(Arrays.asList(userUbezpieczenie4)));
+                    //nauczycie2.setStypendia(new HashSet<>(Arrays.asList(userStypendia4)));
                     nauczycie2.setPassword(passwordEncoder.encode("nauczyciel2"));
 
 
-                    User admin = new User("admin", true, "imieAdmin", "nazAdmin", "emailAdmin", new Date(11-05-2001),ki4, si4, st4, ub4);
+                    User admin = new User("admin", true, "imieAdmin", "nazAdmin", "emailAdmin", new Date(11-05-2001), ki4, si4, st4, ub4);
                     admin.setRoles(new HashSet<>(Arrays.asList(roleAdmin)));
+                    //admin.setKierunki(new HashSet<>(Arrays.asList(userKierunek4)));
+                    //admin.setSpecjalnosci(new HashSet<>(Arrays.asList(userSpecjalosc4)));
+                    //admin.setUbezpieczenie(new HashSet<>(Arrays.asList(userUbezpieczenie4)));
+                    //admin.setStypendia(new HashSet<>(Arrays.asList(userStypendia4)));
                     admin.setPassword(passwordEncoder.encode("admin"));
 
                     userRepository.save(user);

@@ -2,7 +2,9 @@ package edu.uph.ii.platformy.models;
 
 import edu.uph.ii.platformy.validators.annotations.InvalidValues;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
@@ -14,7 +16,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "specjalnosci")
-@Getter @Setter
+@Data
+@NoArgsConstructor
 public class Specjalnosci {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +31,7 @@ public class Specjalnosci {
 
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_kierunku", nullable = false)
+    @JoinColumn(name = "id_kierunku")
     private Kierunki kierunki;
 
     public Specjalnosci(long id, String name ) {

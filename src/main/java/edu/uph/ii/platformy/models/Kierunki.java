@@ -2,7 +2,9 @@ package edu.uph.ii.platformy.models;
 
 import edu.uph.ii.platformy.validators.annotations.InvalidValues;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
@@ -13,7 +15,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "kierunki")
-@Getter @Setter
+@Data
+@NoArgsConstructor
 public class Kierunki {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

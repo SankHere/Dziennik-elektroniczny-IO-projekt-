@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StypendiaRepository extends JpaRepository<Stypendia, Integer> {
 
-    Stypendia findByStypendianame(String name);
+    Stypendia findByName(String name);
 }
 
