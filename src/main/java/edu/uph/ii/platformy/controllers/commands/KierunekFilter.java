@@ -14,16 +14,16 @@ public class KierunekFilter {
     private String phrase;
 
     @Positive
-    private double liczbaMiejsc;
+    private int liczbaMiejsc;
 
 
     public boolean isEmpty(){
-        return StringUtils.isEmpty(phrase) && liczbaMiejsc == 0.0;
+        return StringUtils.isEmpty(phrase) && liczbaMiejsc == 0;
     }
 
     public void clear(){
         this.phrase = "";
-        this.liczbaMiejsc = 0.0;
+        this.liczbaMiejsc = 0;
     }
 
     public String getPhraseLIKE(){

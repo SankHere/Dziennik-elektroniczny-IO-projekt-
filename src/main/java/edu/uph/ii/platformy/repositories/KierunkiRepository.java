@@ -21,6 +21,6 @@ public interface KierunkiRepository extends JpaRepository<Kierunki, Long> {
             "AND " +
             "(:liczbaMiejsc is null OR :liczbaMiejsc >= k.liczbaMiejsc) " )
         // "AND (:max is null OR :max >= v.price)")
-    Page<Kierunki> findAllKierunkiUsingFilter(@Param("phrase") String k, @Param("liczbaMiejsc") double liczbaMiejsc, Pageable pageable);
+    Page<Kierunki> findAllKierunkiUsingFilter(@Param("phrase") String k, @Param("liczbaMiejsc") int liczbaMiejsc, Pageable pageable);
 
 }
