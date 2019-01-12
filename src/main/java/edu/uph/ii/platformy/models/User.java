@@ -50,9 +50,7 @@ public class User {
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
-
     private String surname;
-
 
     @NotBlank
     //@Size(min = 2, max = 30)

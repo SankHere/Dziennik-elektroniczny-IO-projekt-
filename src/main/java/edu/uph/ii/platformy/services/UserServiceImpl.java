@@ -77,12 +77,8 @@ public class UserServiceImpl implements UserService {
     public void save(edu.uph.ii.platformy.models.User user) {
 
         Role userRole = roleRepository.findRoleByType(Role.Types.ROLE_USER);
-                List roles = Collections.singletonList(userRole);
-
-
+        List roles = Collections.singletonList(userRole);
         user.setRoles(new HashSet<>(roles));
-
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setPasswordConfirm(null);//wyzerowanie jest potrzebne ze względu na walidację
         userRepository.saveAndFlush(user);

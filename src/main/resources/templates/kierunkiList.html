@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Strona domowa</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('kierunkiList')"/>
+
+
+<div id="main" class="card-body">
+
+
+    <H1>LISTA KIERUNKOW</H1>
+
+    <form th:method="POST" th:action="@{kierunkiList.html}" th:object="${searchCommand}">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input th:field="*{phrase}" placeholder="Fraza" class="form-control"
+                       th:classappend="${#fields.hasErrors('phrase')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('phrase')}">
+                    <p th:each="err : ${#fields.errors('phrase')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+
+                <input th:field="*{liczbaMiejsc}" placeholder="Liczba miejsc" class="form-control"
+                       th:classappend="${#fields.hasErrors('liczbaMiejsc')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('liczbaMiejsc')}">
+                    <p th:each="err : ${#fields.errors('liczbaMiejsc')}" th:text="${err}"></p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-8"></div>
+
+            <div class="form-group col-md-2">
+                <a th:if="${searchCommand.isEmpty() eq false or #fields.hasErrors('*')}" th:href="@{kierunkiList.html(all)}" class="btn btn-success">
+                    <span class="glyphicon glyphicon-refresh"></span> Pokaż wszystko
+                </a>
+            </div>
+
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span> Wyszukaj
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <div th:if="${kierunkiListPage.hasContent() eq false}">
+        <span th:if="${searchCommand.isEmpty()}">Brak kierunkow w bazie</span>
+        <span th:unless="${searchCommand.isEmpty()}">Brak wyników wyszukiwania</span>
+    </div>
+    <div th:if="${kierunkiListPage.hasContent() eq true}">
+
+
+
+        <span th:if="${searchCommand.isEmpty()}">
+            Baza zawiera [[${kierunkiListPage.totalElements}]] kierunków
+        </span>
+        <span th:unless="${searchCommand.isEmpty()}">
+            Wynik wyszukiwania: [[${kierunkiListPage.totalElements}]] kierunków
+        </span>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>DataUtworzenia</th>
+                <th>Liczba miejsc</th>
+                <th>Opcje</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kierunki : ${kierunkiListPage.content}">
+
+                <td th:text="${kierunki.name}"></td>
+                <td th:text="${#dates.format(kierunki.createdDate, 'dd-MM-yyyy')}"></td>
+                <td th:text="${kierunki.liczbaMiejsc}"></td>
+                <td sec:authorize="hasRole('ROLE_USER')">Zapisz</td>
+
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div th:replace="shared/pagination :: pager(mainUrl=@{/kierunkiList.html}, page=${kierunkiListPage})"></div>
+
+    </div>
+
+
+
+</div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>
