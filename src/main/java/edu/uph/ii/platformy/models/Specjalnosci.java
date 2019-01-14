@@ -21,7 +21,7 @@ import java.util.Date;
 public class Specjalnosci {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     //@Size(min = 2, max = 30)
@@ -34,7 +34,7 @@ public class Specjalnosci {
     @JoinColumn(name = "id_kierunku")
     private Kierunki kierunki;
 
-    public Specjalnosci(long id, String name ) {
+    public Specjalnosci(Long id, String name ) {
         this(name);
         this.id = id;
     }
