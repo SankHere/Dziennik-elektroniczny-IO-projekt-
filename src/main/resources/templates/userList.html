@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Lista Użytkowników</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('trainingRoomList')"/>
+
+
+
+    <div id="main" class="card-body">
+
+
+        <H1>LISTA WSZYSTKICH UŻYTKOWNIKÓW</H1>
+        <!--<H3>Implementacja widoku z wykorzystaniem technologii szablonów Thymeleaf</H3>!-->
+        <BR>
+
+        <form th:method="POST" th:action="@{userList.html}">
+            <div class="row">
+
+
+            </div>
+            <div class="row">
+
+                <div class="form-group col-md-8"></div>
+
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search"></span> Wyszukaj
+                    </button>
+                </div>
+            </div>
+        </form>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID użytkownika</th>
+                    <th>Imie i nazwisko</th>
+                    <th>Email</th>
+                    <th>Data urodzenia</th>
+                    <th>Kierunek</th>
+                    <th>Specjalność</th>
+                    <th>ID ubezpieczenia</th>
+                    <th>ID stypendium</th>
+
+                    <th sec:authorize="hasRole('DZIEKANAT')">Opcje</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user">
+
+                    <td th:text="${user.id}"></td>
+                    <td>
+
+                       <span sec:authorize="isAnonymous()"> [[${user.name + user.surname}]]</span>
+                    </td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.dataUrodzenia}"></td>
+                    <td th:text="${user.kierunki.name}"></td>
+                    <td th:text="${user.id_ubezpieczenia}"></td>
+                    <td th:text="${user.id-stypendium}"></td>
+
+
+                    <td sec:authorize="hasRole('ROLE_DZIEKANAT')">
+                        <a class="btn btn-danger" th:href="@{userList.html(did=${user.id})}">Wstaw ocene!</a>
+                        <!--<a class="btn btn-success" th:href="@{trainingRoomForm.html(id=${trainingRoom.id})}">Edytuj</a>-->
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+
+
+    </div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

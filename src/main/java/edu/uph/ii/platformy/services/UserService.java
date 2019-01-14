@@ -8,4 +8,9 @@ public interface UserService extends UserDetailsService {
     void save(User user);
 
     boolean isUniqueLogin(String login);
+    User getUser(Long id);
+
+    void deleteUser(Long id);
+
+    //void saveUser(User user);
 }

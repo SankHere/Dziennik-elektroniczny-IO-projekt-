@@ -2,6 +2,7 @@ package edu.uph.ii.platformy.services;
 
 
 import edu.uph.ii.platformy.config.ProfileNames;
+import edu.uph.ii.platformy.exceptions.UserNotFoundException;
 import edu.uph.ii.platformy.models.*;
 import edu.uph.ii.platformy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,4 +89,23 @@ public class UserServiceImpl implements UserService {
     public boolean isUniqueLogin(String username) {
         return userRepository.findByUsername(username) == null;
     }
+
+    @Transactional
+    @Override
+    public edu.uph.ii.platformy.models.User getUser(Long id) {
+        Optional<edu.uph.ii.platformy.models.User> optionalUser = userRepository.findById(id);
+        edu.uph.ii.platformy.models.User user = optionalUser.orElseThrow(()->new UserNotFoundException(id));
+        //user.getAccessories().size();//dociągnięcie leniwych akcesoriów. Wymagana adnotacja @Transaction nad metodą lub klasą, aby findById nie zamknęło transakcji
+        return user;
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        if(userRepository.existsById(id)){
+            userRepository.deleteById(id);
+        }else{
+            throw new UserNotFoundException(id);
+        }
+    }
+
 }
