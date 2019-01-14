@@ -1,18 +1,12 @@
 package edu.uph.ii.platformy.models;
 
-import edu.uph.ii.platformy.validators.annotations.InvalidValues;
-
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.Date;
-
 
 @Entity
 @Table(name = "specjalnosci")
@@ -26,7 +20,6 @@ public class Specjalnosci {
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
-    @InvalidValues(ignoreCase = true, values = {"BazyDanych", "Sieci", "Chemia kwantowa"})
     private String name;
 
     @Valid
