@@ -1,6 +1,8 @@
 package edu.uph.ii.platformy.controllers;
 
 
+import edu.uph.ii.platformy.models.Egzamin;
+import edu.uph.ii.platformy.models.Podanie;
 import edu.uph.ii.platformy.models.User;
 import edu.uph.ii.platformy.services.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@SessionAttributes(names={"trainingRoomType", "accessoryList", "trainingRoom"})
+@SessionAttributes(names={"egzamin", "user"})
 @Log4j2
 public class UserFormController {
 
@@ -34,25 +36,25 @@ public class UserFormController {
     }
 
 
-    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_DZIEKANAT")
     @RequestMapping(value="/userForm.html", method= RequestMethod.GET)
-    public String showForm(Model model, Optional<Long> id){
+    public String showForm(Model model, Long id){
 
-        model.addAttribute("user",
-                id.isPresent()?
-                        userService.getUser(id.get()):
-                        new User());
+        if(id != null) {
+            model.addAttribute("user", userService.getUser(id));
 
+        }
         return "userForm";
     }
 //
-    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_DZIEKANAT")
     @RequestMapping(value="/userForm.html", method= RequestMethod.POST)
+
     //@ResponseStatus(HttpStatus.CREATED)
     public String processForm(@Valid @ModelAttribute("user") User user, BindingResult errors){
 
         if(errors.hasErrors()){
-            return "user";
+            return "userForm";
         }
 
         //log.info("Data utworzenia komponentu "+v.getCreatedDate());
@@ -63,5 +65,11 @@ public class UserFormController {
         return "redirect:userList.html";//po udanym dodaniu/edycji przekierowujemy na listę
     }
 
+    @ModelAttribute("egzamin")
+    public List<Egzamin> loadTypes(){
+        List<Egzamin> types = userService.getAllTypes();
+        // log.info("Ładowanie listy "+types.size()+" typów ");
+        return types;
+    }
 
 }

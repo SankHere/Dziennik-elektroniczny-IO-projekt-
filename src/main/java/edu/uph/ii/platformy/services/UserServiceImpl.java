@@ -7,6 +7,8 @@ import edu.uph.ii.platformy.models.*;
 import edu.uph.ii.platformy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -35,6 +37,26 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EgzaminRepository egzaminRepository;
+
+    @Override
+    public List<Egzamin> getAllTypes() {
+        return egzaminRepository.findAll();
+    }
+
+    @Override
+    public Page<edu.uph.ii.platformy.models.User> getAllUser(Pageable pageable) {
+        Page page;
+
+        page = userRepository.findAll(pageable);
+        //   page = accessoryRepository.findAllAccessoriesUsingFilter(pageable);
+
+
+        return page;
+
+    }
 
 
     @Override
@@ -88,13 +110,5 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
-    public void deleteUser(Long id) {
-        if(userRepository.existsById(id)){
-            userRepository.deleteById(id);
-        }else{
-            throw new UserNotFoundException(id);
-        }
-    }
 
 }
