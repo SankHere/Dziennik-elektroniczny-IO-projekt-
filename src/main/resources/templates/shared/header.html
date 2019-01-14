@@ -32,6 +32,18 @@
             <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                 <a class="nav-link" th:classappend="${pageName eq 'kierunkiList'}?'active'"  th:href="@{/kierunkiList.html}">Lista kierunkow</a>
             </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
+                <a class="nav-link" th:classappend="${pageName eq 'stypendiaList'}?'active'"  th:href="@{/stypendiaList.html}">Stypendia</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
+                <a class="nav-link" th:classappend="${pageName eq 'ubezpieczeniaList'}?'active'"  th:href="@{/ubezpieczeniaList.html}">Ubezpieczenia</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_DZIEKANAT')">
+                <a class="nav-link" th:classappend="${pageName eq 'ubezpieczeniaList'}?'active'"  th:href="@{/ubezpieczeniaList.html}">Ubezpieczenia</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_NAUCZYCIEL')">
+                <a class="nav-link" th:classappend="${pageName eq 'ubezpieczeniaList'}?'active'"  th:href="@{/ubezpieczeniaList.html}">Ubezpieczenia</a>
+            </li>
             <li class="nav-item" sec:authorize="isAnonymous()">
                 <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" href="/registrationForm.html">Rejestracja</a>
             </li>

@@ -36,17 +36,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UbezpieczenieRepository ubezpieczenieRepository;
-
-    @Autowired
-    private SpecjalnosciRepository specjalnosciRepository;
-
-    @Autowired
-    private KierunkiRepository kierunkiRepository;
-
-    @Autowired
-    private StypendiaRepository stypendiaRepository;
 
     @Override
     //bez adnotacji @Transactional sesja jest zamykana po wywołaniu findByUsername, co uniemożliwia dociągnięcie ról, gdyż fetch=EAGER.

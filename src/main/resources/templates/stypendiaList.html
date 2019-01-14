@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Strona domowa</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('stypendiaList')"/>
+
+
+<div id="main" class="card-body">
+
+
+    <H1>LISTA STYPENDIÓW</H1>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Kwota</th>
+        <th>Opcje</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${stypendia}">
+
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.kwota}"></td>
+        <td>Złóż podanie</td>
+
+    </tr>
+
+    </tbody>
+    </table>
+
+</div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

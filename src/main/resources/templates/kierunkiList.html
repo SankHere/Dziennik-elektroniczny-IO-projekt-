@@ -85,7 +85,10 @@
                 <td th:text="${kierunki.name}"></td>
                 <td th:text="${#dates.format(kierunki.createdDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${kierunki.liczbaMiejsc}"></td>
-                <td sec:authorize="hasRole('ROLE_USER')">Zapisz</td>
+
+                <!--<td sec:authorize="hasRole('ROLE_USER')"><a th:href="@{podanieForm.html(id=${kierunki.id})(id_user=)}">Zapis</a></td>-->
+
+                <td sec:authorize="hasRole('ROLE_USER')"><a th:href="@{podanieForm.html(id=${kierunki.id})(id_kategoria=1)}">Zapis</a></td>
 
 
             </tr>
