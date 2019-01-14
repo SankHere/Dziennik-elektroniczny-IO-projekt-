@@ -40,6 +40,26 @@ public class PodanieServiceImpl implements PodanieService {
     }
 
 
+    public void stan1(Long id) {
+        podanieRepository.zmienstan1(id);
+        //return page;
+    }
+
+    public void stan2(Long id) {
+        podanieRepository.zmienstan2(id);
+        //return page;
+    }
+
+    public void stan3(Long id) {
+        podanieRepository.zmienstan3(id);
+        //return page;
+    }
+
+    public void stan4(Long id) {
+        podanieRepository.zmienstan4(id);
+        //return page;
+    }
+
 
     @Override
     public void savePodanie(Podanie podanie) {

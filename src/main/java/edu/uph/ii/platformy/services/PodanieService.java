@@ -11,5 +11,10 @@ public interface PodanieService {
 
     Podanie getPodanie(Long id);
 
+    void stan1(Long id);
+    void stan2(Long id);
+    void stan3(Long id);
+    void stan4(Long id);
+
     void savePodanie(Podanie podanie);
 }

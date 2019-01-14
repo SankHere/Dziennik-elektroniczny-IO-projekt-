@@ -17,22 +17,27 @@
 
 
             <div class="form-group">
-                <select th:field="*{podanie.id}" class="form-control"
-                        th:classappend="${#fields.hasErrors('podanie.id')}?'is-invalid'">
-                    <span sec:authorize="hasRole('ROLE_USER')">
-                        <option value="1">Przyjęcie na studia</option>
-                        <option value="2">Przyjęcie na studia</option>
-                        <option value="3">Przyjęcie na studia</option>
-                        <option value="4">Przyjęcie na studia</option>
-                        <option value="5">Przyjęcie na studia</option>
-                        <option value="6">Przyjęcie na studia</option>
+                <select sec:authorize="hasRole('ROLE_USER')" class="form-control">
 
-                    </span>
+                        <option value="1">Przyjęcie na kierunek</option>
+                        </select>
+
+                <select sec:authorize="hasRole('ROLE_STUDENT')" class="form-control">
+                <option value="2">Zmiana danych osobowych</option>
+                <option value="3">Przyjęcie na specjalizację</option>
+                <option value="4">Wniosek o stypendia</option>
+                <option value="5">Wniosek o Ubezpieczenie</option>
+                <option value="6">Przyjęcie na specjalnosci</option>
+                </select>
 
 
-
+                <select sec:authorize="hasRole('ROLE_DZIEKANAT')" class="form-control">
+                    <option value="2">Zmiana danych osobowych</option>
+                        <option value="7">Utworzenie nowego kierunku</option>
+                        <option value="8">Utworzenie nowej specjalności</option>
 
                 </select>
+            </div>
 
             <div class="form-group">
                 <label for="opis" class="bmd-label-floating">Opis:</label>

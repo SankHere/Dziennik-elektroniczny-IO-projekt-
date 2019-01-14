@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @Entity
@@ -33,17 +34,25 @@ public class Podanie{
     //4 zaakceptowany
     private int stan;
 
+    @Valid
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_usera", nullable = false)
+    private User user;
+
     public Podanie(int name, String opis, int stan){
         this.name = name;
         this.opis=opis;
         this.stan=stan;
     }
-
-    public Podanie(int id, int name,String opis, int stan){
+    public Podanie(int id, String opis, int stan, User user) {
+        this(opis, stan, user);
         this.id = id;
-        this.name = name;
-        this.opis=opis;
-        this.stan=stan;
+    }
+
+    public Podanie(String opis, int stan, User user) {
+        this.opis = opis;
+        this.stan = stan;
+        this.user = user;
     }
 
 }
