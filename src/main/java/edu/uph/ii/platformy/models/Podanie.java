@@ -20,7 +20,7 @@ public class Podanie{
     private int id;
 
     //zrób name w select na stronie np. rekrutacja na kierunki, utworzenie nowego przedmiotu.
-    private String name;
+    private int name;
 
 
     private String opis;
@@ -33,13 +33,13 @@ public class Podanie{
     //4 zaakceptowany
     private int stan;
 
-    public Podanie(String name, String opis, int stan){
+    public Podanie(int name, String opis, int stan){
         this.name = name;
         this.opis=opis;
         this.stan=stan;
     }
 
-    public Podanie(int id, String name,String opis, int stan){
+    public Podanie(int id, int name,String opis, int stan){
         this.id = id;
         this.name = name;
         this.opis=opis;

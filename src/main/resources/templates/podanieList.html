@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Lista specjalnosci</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('specjalnosciList')"/>
+
+
+<div id="main" class="card-body">
+
+
+    <H1>LISTA SPECJALNOŚCI</H1>
+
+    <form th:method="POST" th:action="@{specjalnosciList.html}" th:object="${searchCommand}">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input th:field="*{phrase}" placeholder="Fraza" class="form-control"
+                       th:classappend="${#fields.hasErrors('phrase')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('phrase')}">
+                    <p th:each="err : ${#fields.errors('phrase')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-8"></div>
+
+            <div class="form-group col-md-2">
+                <a th:if="${searchCommand.isEmpty() eq false or #fields.hasErrors('*')}" th:href="@{specjalnosciList.html(all)}" class="btn btn-success">
+                    <span class="glyphicon glyphicon-refresh"></span> Pokaż wszystko
+                </a>
+            </div>
+
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span> Wyszukaj
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <div th:if="${specjalnosciListPage.hasContent() eq false}">
+        <span th:if="${searchCommand.isEmpty()}">Brak kierunkow w bazie</span>
+        <span th:unless="${searchCommand.isEmpty()}">Brak wyników wyszukiwania</span>
+    </div>
+    <div th:if="${specjalnosciListPage.hasContent() eq true}">
+
+
+
+        <span th:if="${searchCommand.isEmpty()}">
+            Baza zawiera [[${specjalnosciListPage.totalElements}]] kierunków
+        </span>
+        <span th:unless="${searchCommand.isEmpty()}">
+            Wynik wyszukiwania: [[${specjalnosciListPage.totalElements}]] kierunków
+        </span>
+
+
+
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Stan</th>
+                <th>Opcje</th>
+
+            </tr>
+            </thead>
+            <td>
+            <td th:each="specjalnosci : ${specjalnosciListPage.content}">
+
+<!--null oczekujacy, pokazuje pracownikowi na liście z przyciskiem akceptuj zmieniajacy stan na 1-->
+<!--1 - zaakcceptowany przez pracownika, zmienia stan na 2-->
+<!--2 - zaakceptowany przez admina, pokazuje się lista adminowi i on zmienia stan na 3-->
+<!--3 - pokazuje na liście pracownika wraz z przyciskiem do zrobienia który przekierowuje na formularz, później zmiana na 4-->
+<!--4 zaakceptowane-->
+
+
+
+                <span sec:authorize="hasRole('ROLE_PRACOWNIK')"><span th:if="${Podanie.id == null}">
+                    <td th:text="${podanie.name}"></td>
+                    <td th:text="${podanie.opis}"></td>
+                    <td><a th:href="@{podanieList.html(stan1=${podanie.id})}">
+                        Akceptuj<!--Akceptuj stan 1-->
+                    </a></span></span></td>
+                <span sec:authorize="hasRole('ROLE_ADMIN')"><span th:if="${Podanie.id == 1}">
+                    <td th:text="${podanie.name}"></td>
+                    <td th:text="${podanie.opis}"></td>
+                    <td><a th:href="@{podanieList.html(stan2=${podanie.stan})}">
+                        Akceptuj<!--Akceptuj stan 2-->
+                    </a></span></span></td>
+                <span sec:authorize="hasRole('ROLE_PRACOWNIK')"><span th:if="${Podanie.id == 2}">
+                    <td th:text="${podanie.name}"></td>
+                    <td th:text="${podanie.opis}"></td>
+                    <td><a th:href="@{podanieList.html(stan3=${podanie.stan})}">
+                        Akceptuj<!--Akceptuj stan 3-->
+                    </a></span></span></td>
+
+
+
+
+
+
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div th:replace="shared/pagination :: pager('/specjalnosciList.html', ${specjalnosciListPage})"></div>
+
+    </div>
+
+    <a sec:authorize="hasRole('ADMIN')" class="btn btn-success" href="specjalnosciForm.html">Dodaj Nowy</a>
+
+</div>
+
+<a class="btn btn-success" href="specjalnosciForm.html">Dodaj Nowy</a>
+
+
+
+</div>
+</div>
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>
