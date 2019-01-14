@@ -1,16 +1,111 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 <head>
     <div th:replace="shared/header :: header-css"/>
-    <title>Strona domowa</title>
-</head>
-<body>
-<div th:replace="shared/header :: header('home')"/>
 
-<div id="main" class="container">
-    <span style="font-size: 30pt">
-        test test teste główna
-    </span>
+    <title>Lista specjalnosci</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('specjalnosciList')"/>
+
+
+<div id="main" class="card-body">
+
+
+    <H1>LISTA SPECJALNOŚCI</H1>
+
+    <form th:method="POST" th:action="@{specjalnosciList.html}" th:object="${searchCommand}">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input th:field="*{phrase}" placeholder="Fraza" class="form-control"
+                       th:classappend="${#fields.hasErrors('phrase')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('phrase')}">
+                    <p th:each="err : ${#fields.errors('phrase')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-8"></div>
+
+            <div class="form-group col-md-2">
+                <a th:if="${searchCommand.isEmpty() eq false or #fields.hasErrors('*')}" th:href="@{specjalnosciList.html(all)}" class="btn btn-success">
+                    <span class="glyphicon glyphicon-refresh"></span> Pokaż wszystko
+                </a>
+            </div>
+
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span> Wyszukaj
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <div th:if="${specjalnosciListPage.hasContent() eq false}">
+        <span th:if="${searchCommand.isEmpty()}">Brak kierunkow w bazie</span>
+        <span th:unless="${searchCommand.isEmpty()}">Brak wyników wyszukiwania</span>
+    </div>
+    <div th:if="${specjalnosciListPage.hasContent() eq true}">
+
+
+
+        <span th:if="${searchCommand.isEmpty()}">
+            Baza zawiera [[${specjalnosciListPage.totalElements}]] kierunków
+        </span>
+        <span th:unless="${searchCommand.isEmpty()}">
+            Wynik wyszukiwania: [[${specjalnosciListPage.totalElements}]] kierunków
+        </span>
+
+
+
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opcje</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="specjalnosci : ${specjalnosciListPage.content}">
+
+                <td th:text="${specjalnosci.name}"></td>
+                <td>
+                    <span sec:authorize="hasRole('ROLE_USER')">Zapisz</span>
+                    <span sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="btn btn-danger" th:href="@{specjalnosciList.html(did=${specjalnosci.id})}">Usuń</a>
+                    <a class="btn btn-success" th:href="@{specjalnosciForm.html(id=${specjalnosci.id})}">Edytuj</a>
+                </span>
+                </td>
+
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div th:replace="shared/pagination :: pager('/specjalnosciList.html', ${specjalnosciListPage})"></div>
+
+    </div>
+
+    <a sec:authorize="hasRole('ADMIN')" class="btn btn-success" href="specjalnosciForm.html">Dodaj Nowy</a>
+
+</div>
+
+<a class="btn btn-success" href="specjalnosciForm.html">Dodaj Nowy</a>
+
+
+
+</div>
 </div>
 <div th:replace="shared/footer :: footer"></div>
 </body>
