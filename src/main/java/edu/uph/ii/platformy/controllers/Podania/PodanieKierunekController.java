@@ -8,9 +8,10 @@ import edu.uph.ii.platformy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 
 
 @Controller
@@ -20,11 +21,22 @@ public class PodanieKierunekController {
     @Autowired
     private KierunkiRepository kierunkiRepository;
 
+
     @RequestMapping(value="/podanieKierunek.html", method= RequestMethod.GET)
     public String showPodanieKierunek(Model model){
         model.addAttribute("kierunekNowy", new PodanieKierunki());
         return "podanieKierunek";
     }
+//    @PostMapping(value = "/podanieKierunek.html")
+//    public String showProduktForm(Model model, @Valid @ModelAttribute("kierunekNowy") PodanieKierunki podanieKierunki, BindingResult bindingResult){
+//
+//        if(bindingResult.hasErrors()){
+//            return  "podanieKierunek";
+//        }
+//        produktRepository.save(produktForm);
+//        return "redirect:produktList";
+//    }
+
 
 }
 
