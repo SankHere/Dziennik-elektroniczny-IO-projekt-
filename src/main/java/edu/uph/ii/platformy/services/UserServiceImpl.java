@@ -41,22 +41,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EgzaminRepository egzaminRepository;
 
-    @Override
-    public List<Egzamin> getAllTypes() {
-        return egzaminRepository.findAll();
-    }
+//    @Override
+//    public List<Egzamin> getAllTypes() {
+//        return egzaminRepository.findAll();
+//    }
 
-    @Override
-    public Page<edu.uph.ii.platformy.models.User> getAllUser(Pageable pageable) {
-        Page page;
-
-        page = userRepository.findAll(pageable);
-        //   page = accessoryRepository.findAllAccessoriesUsingFilter(pageable);
-
-
-        return page;
-
-    }
+//    @Override
+//    public Page<edu.uph.ii.platformy.models.User> getAllUser(Pageable pageable) {
+//        Page page;
+//
+//        page = userRepository.findAll(pageable);
+//        //   page = accessoryRepository.findAllAccessoriesUsingFilter(pageable);
+//
+//
+//        return page;
+//
+//    }
 
 
     @Override
@@ -101,14 +101,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username) == null;
     }
 
-    @Transactional
-    @Override
-    public edu.uph.ii.platformy.models.User getUser(Long id) {
-        Optional<edu.uph.ii.platformy.models.User> optionalUser = userRepository.findById(id);
-        edu.uph.ii.platformy.models.User user = optionalUser.orElseThrow(()->new UserNotFoundException(id));
-        //user.getAccessories().size();//dociągnięcie leniwych akcesoriów. Wymagana adnotacja @Transaction nad metodą lub klasą, aby findById nie zamknęło transakcji
-        return user;
-    }
+//    @Transactional
+//    @Override
+//    public edu.uph.ii.platformy.models.User getUser(Long id) {
+//        Optional<edu.uph.ii.platformy.models.User> optionalUser = userRepository.findById(id);
+//        edu.uph.ii.platformy.models.User user = optionalUser.orElseThrow(()->new UserNotFoundException(id));
+//        //user.getAccessories().size();//dociągnięcie leniwych akcesoriów. Wymagana adnotacja @Transaction nad metodą lub klasą, aby findById nie zamknęło transakcji
+//        return user;
+//    }
 
 
 }

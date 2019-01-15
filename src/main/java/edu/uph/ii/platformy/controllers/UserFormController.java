@@ -3,6 +3,7 @@ package edu.uph.ii.platformy.controllers;
 
 import edu.uph.ii.platformy.models.Egzamin;
 import edu.uph.ii.platformy.models.User;
+import edu.uph.ii.platformy.repositories.UserRepository;
 import edu.uph.ii.platformy.services.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.annotation.Secured;
@@ -23,7 +24,7 @@ import java.util.List;
 public class UserFormController {
 
     private UserService userService;
-
+    private UserRepository userRepository;
     //Wstrzyknięcie zależności przez konstruktor. Od wersji 4.3 Springa nie trzeba używać adnontacji @Autowired, gdy mamy jeden konstruktor
     // @Autowired
     public UserFormController(UserService userService)
@@ -33,11 +34,11 @@ public class UserFormController {
 
 
     @Secured("ROLE_DZIEKANAT")
-    @RequestMapping(value="/userForm.html", method= RequestMethod.GET)
+    @RequestMapping(value="/userForm.html",params = "did",method= RequestMethod.GET)
     public String showForm(Model model, Long id){
 
         if(id != null) {
-            model.addAttribute("user", userService.getUser(id));
+            model.addAttribute("user", userRepository.getOne(id));
 
         }
         return "userForm";
@@ -61,11 +62,11 @@ public class UserFormController {
         return "redirect:userList.html";//po udanym dodaniu/edycji przekierowujemy na listę
     }
 
-    @ModelAttribute("egzamin")
-    public List<Egzamin> loadTypes(){
-        List<Egzamin> types = userService.getAllTypes();
-        // log.info("Ładowanie listy "+types.size()+" typów ");
-        return types;
-    }
+//    @ModelAttribute("egzamin")
+//    public List<Egzamin> loadTypes(){
+//        List<Egzamin> types = userService.getAllTypes();
+//        // log.info("Ładowanie listy "+types.size()+" typów ");
+//        return types;
+//    }
 
 }

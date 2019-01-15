@@ -13,9 +13,9 @@ public interface UserService extends UserDetailsService {
     void save(User user);
 
     boolean isUniqueLogin(String login);
-    User getUser(Long id);
-    Page<User> getAllUser(Pageable pageable);
-    List<Egzamin> getAllTypes();
+    //User getUser(Long id);
+//    Page<User> getAllUser(Pageable pageable);
+//    List<Egzamin> getAllTypes();
 
 
     //void saveUser(User user);

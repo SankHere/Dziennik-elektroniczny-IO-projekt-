@@ -3,6 +3,7 @@ package edu.uph.ii.platformy.controllers;
 
 import edu.uph.ii.platformy.repositories.UserRepository;
 import edu.uph.ii.platformy.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
@@ -19,13 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UserListController {
 
     //private UserService userService;
+    @Autowired
     private UserRepository userRepository;
 
 
-//    @GetMapping(value="/errors")
-//    public String resetUserList(){
-//        return "redirect:userList.html";
-//    }
 
 
     @RequestMapping(value="/userList.html", method = {RequestMethod.GET, RequestMethod.POST})
