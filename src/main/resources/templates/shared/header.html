@@ -31,6 +31,9 @@
             <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                 <a class="nav-link" th:classappend="${pageName eq 'kierunkiList'}?'active'"  th:href="@{/kierunkiList.html}">Lista kierunkow</a>
             </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_DZIEKANAT')">
+                <a class="nav-link" th:classappend="${pageName eq 'kierunkiList'}?'active'"  th:href="@{/kierunkiList.html}">Lista kierunkow</a>
+            </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
                 <a class="nav-link" th:classappend="${pageName eq 'stypendiaList'}?'active'"  th:href="@{/stypendiaList.html}">Stypendia</a>
             </li>
