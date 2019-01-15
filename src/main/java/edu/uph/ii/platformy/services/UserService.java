@@ -1,7 +1,6 @@
 package edu.uph.ii.platformy.services;
 
 import edu.uph.ii.platformy.models.Egzamin;
-import edu.uph.ii.platformy.models.Podanie;
 import edu.uph.ii.platformy.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

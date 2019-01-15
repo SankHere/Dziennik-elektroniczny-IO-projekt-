@@ -2,11 +2,9 @@ package edu.uph.ii.platformy.controllers;
 
 
 import edu.uph.ii.platformy.models.Egzamin;
-import edu.uph.ii.platformy.models.Podanie;
 import edu.uph.ii.platformy.models.User;
 import edu.uph.ii.platformy.services.UserService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @SessionAttributes(names={"egzamin", "user"})
