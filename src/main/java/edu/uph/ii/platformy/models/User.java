@@ -96,8 +96,8 @@ public class User {
     //private Set<Ubezpieczenie> ubezpieczenie;
     private Ubezpieczenie ubezpieczenie;
 
-    public User(String username, String name, String surname, String email, Date dataUrodzenia, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
-        this(username, false, name, surname, email, dataUrodzenia, kierunki, specjalnosci, stypendia, ubezpieczenie);
+    public User(String username, String name, String surname, String email, Date dataRejestracji, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
+        this(username, false, name, surname, email, dataRejestracji, kierunki, specjalnosci, stypendia, ubezpieczenie);
     }
 
     public User(String username, boolean enabled, String name, String surname, String email, Date dataRejestracji, Kierunki kierunki, Specjalnosci specjalnosci, Stypendia stypendia, Ubezpieczenie ubezpieczenie){
