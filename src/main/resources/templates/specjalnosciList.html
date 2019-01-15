@@ -16,57 +16,6 @@
 
     <H1>LISTA SPECJALNOŚCI</H1>
 
-    <form th:method="POST" th:action="@{specjalnosciList.html}" th:object="${searchCommand}">
-        <div class="row">
-            <div class="form-group col-md-6">
-                <input th:field="*{phrase}" placeholder="Fraza" class="form-control"
-                       th:classappend="${#fields.hasErrors('phrase')}?'is-invalid'"/>
-                <div class="error text-danger" th:if="${#fields.hasErrors('phrase')}">
-                    <p th:each="err : ${#fields.errors('phrase')}" th:text="${err}"></p>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-
-            <div class="form-group col-md-8"></div>
-
-            <div class="form-group col-md-2">
-                <a th:if="${searchCommand.isEmpty() eq false or #fields.hasErrors('*')}" th:href="@{specjalnosciList.html(all)}" class="btn btn-success">
-                    <span class="glyphicon glyphicon-refresh"></span> Pokaż wszystko
-                </a>
-            </div>
-
-            <div class="form-group col-md-2">
-                <button type="submit" class="btn btn-info">
-                    <span class="glyphicon glyphicon-search"></span> Wyszukaj
-                </button>
-            </div>
-        </div>
-    </form>
-
-
-    <div th:if="${specjalnosciListPage.hasContent() eq false}">
-        <span th:if="${searchCommand.isEmpty()}">Brak kierunkow w bazie</span>
-        <span th:unless="${searchCommand.isEmpty()}">Brak wyników wyszukiwania</span>
-    </div>
-    <div th:if="${specjalnosciListPage.hasContent() eq true}">
-
-
-
-        <span th:if="${searchCommand.isEmpty()}">
-            Baza zawiera [[${specjalnosciListPage.totalElements}]] kierunków
-        </span>
-        <span th:unless="${searchCommand.isEmpty()}">
-            Wynik wyszukiwania: [[${specjalnosciListPage.totalElements}]] kierunków
-        </span>
-
-
-
-
-
-
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -79,13 +28,12 @@
             <tr th:each="specjalnosci : ${specjalnosciListPage.content}">
 
                 <td th:text="${specjalnosci.name}"></td>
-                <td>
-                    <span sec:authorize="hasRole('ROLE_USER')">Zapisz</span>
-                    <span sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-danger" th:href="@{specjalnosciList.html(did=${specjalnosci.id})}">Usuń</a>
-                    <a class="btn btn-success" th:href="@{specjalnosciForm.html(id=${specjalnosci.id})}">Edytuj</a>
+                <td sec:authorize="hasRole('ROLE_STUDENT')">
+                    <span th:if="${zalogowany.specjalnosci.id != null}">
+                    <a class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${specjalnosci.id})}">Zapisz</a>
                 </span>
                 </td>
+
 
 
             </tr>

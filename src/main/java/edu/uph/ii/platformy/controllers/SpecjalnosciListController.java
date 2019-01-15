@@ -1,12 +1,16 @@
 package edu.uph.ii.platformy.controllers;
 
 import edu.uph.ii.platformy.controllers.commands.SpecjalnoscFilter;
+import edu.uph.ii.platformy.models.User;
+import edu.uph.ii.platformy.repositories.UserRepository;
 import edu.uph.ii.platformy.services.SpecjalnosciService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,28 +29,17 @@ public class SpecjalnosciListController {
     @Autowired
     private SpecjalnosciService specjalnosciService;
 
+    @Autowired
+    private UserRepository userRepository;
 
-
-    @GetMapping(value="/errorSpecjalnosci")
-    public String resetSpecjalnosciList(){
-        return "redirect:specjalnosciList.html";
-    }
-
-
-    @ModelAttribute("searchCommand")
-    public SpecjalnoscFilter getSimpleSearch(){
-        return new SpecjalnoscFilter();
-    }
-
-    @GetMapping(value="/specjalnosciList.html", params = {"all"})
-    public String resetSpecjalnosciList(@ModelAttribute("searchCommand") SpecjalnoscFilter search){
-        search.clear();
-        return "redirect:specjalnosciList.html";
-    }
 
     @RequestMapping(value="/specjalnosciList.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String showSpecjalnosciList(Model model, @Valid @ModelAttribute("searchCommand") SpecjalnoscFilter search, BindingResult result, Pageable pageable){
-        model.addAttribute("specjalnosciListPage", specjalnosciService.getAllSpecjalnosci(search, pageable));
+    public String showSpecjalnosciList(Model model, Pageable pageable){
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        User zalogowany = userRepository.findByUsername(currentPrincipalName);
+        model.addAttribute("zalogowany", zalogowany);
+        model.addAttribute("specjalnosciListPage", specjalnosciService.getAllSpecjalnosci(pageable));
         return "specjalnosciList";
     }
 
