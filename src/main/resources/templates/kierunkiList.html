@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <div th:replace="shared/header :: header-css"/>
 
@@ -20,7 +22,8 @@
                 <th>Nazwa</th>
                 <th>DataUtworzenia</th>
                 <th>Liczba miejsc</th>
-                <th>Opcje</th>
+                <th>Opis</th>
+                <th sec:authorize="hasRole('ROLE_USER')">Opcje</th>
 
             </tr>
             </thead>
@@ -30,19 +33,18 @@
                 <td th:text="${kierunki.name}"></td>
                 <td th:text="${#dates.format(kierunki.createdDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${kierunki.liczbaMiejsc}"></td>
-                <td>Zapisz</td>
+                <td th:text="${kierunki.opis}"></td>
 
-                <!--<td sec:authorize="hasRole('ROLE_USER')"><a th:href="@{podanieForm.html(id=${kierunki.id})(id_user=)}">Zapis</a></td>-->
+
+                <td sec:authorize="hasRole('ROLE_USER')"><a th:href="@{kierunkiForm.html(id=${kierunki.id})}">Zapis</a></td>
 
             </tr>
 
             </tbody>
         </table>
 
-
-
 </div>
-
+<button class="btn-success" sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{/podanieKierunek.html}">Dodaj nowy</a></button>
 <div th:replace="shared/footer :: footer"></div>
 </body>
 </html>

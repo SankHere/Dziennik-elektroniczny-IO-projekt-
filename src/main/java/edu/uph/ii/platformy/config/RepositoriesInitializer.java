@@ -56,14 +56,14 @@ public class RepositoriesInitializer {
                 try {
 
                     //tworzymy kierunki
-                    Kierunki ki1 = new Kierunki("Informatyka", 100, new Date(01-10-2011));
+                    Kierunki ki1 = new Kierunki("Informatyka", 100, new Date(01-10-2011), "opis do Informatyki");
                     kierunkiRepository.save(ki1);
-                    Kierunki ki2 = new Kierunki("Matematyka", 80, new Date( 13-07-2000));
+                    Kierunki ki2 = new Kierunki("Matematyka", 80, new Date( 13-07-2000), "opis do Matematyki");
                     kierunkiRepository.save(ki2);
-                    Kierunki ki3 = new Kierunki("Chemia", 50, new Date(11-11-2014));
+                    Kierunki ki3 = new Kierunki("Chemia", 50, new Date(11-11-2014), "opis do chemii");
                     kierunkiRepository.save(ki3);
                     //nauczyciel nie powinien miec zadnego przedmiotu to bedzie tutaj nalezec
-                    Kierunki ki4 = new Kierunki("Brak", 1, new Date(01-01-2000));
+                    Kierunki ki4 = new Kierunki("Brak", 1, new Date(01-01-2000), "jakis opis");
                     kierunkiRepository.save(ki4);
 
 
