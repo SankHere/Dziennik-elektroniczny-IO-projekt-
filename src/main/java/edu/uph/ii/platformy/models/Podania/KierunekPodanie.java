@@ -13,44 +13,39 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "kierunekPodanie")
+@Table(name = "kierunekpodanie")
 @Data
-@Getter
-@Setter
 public class KierunekPodanie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+
     private String name;
     private String surname;
 
     @Max(6)
-    private Float avg;
+    private int avg;
 
-    @NotBlank
+
     private String schoolName;
     private int status;
 
-    @NotBlank
+
     private String nazwaKierunku;
-
-    @Valid
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_kierunku", nullable = false)
-    private Kierunki kierunki;
+    private int idKierunku;
 
 
-    public KierunekPodanie(String name,String surname, Float avg, String schoolName, int status,Kierunki kierunki,String nazwaKierunku){
+    public KierunekPodanie(Long id,String name,String surname, int avg, String schoolName, int status,int idKierunku,String nazwaKierunku){
         this.name=name;
         this.schoolName=schoolName;
         this.surname=surname;
         this.avg=avg;
         this.status=status;
-        this.kierunki=kierunki;
+        this.idKierunku=idKierunku;
         this.nazwaKierunku=nazwaKierunku;
+        this.id=id;
     }
 
 

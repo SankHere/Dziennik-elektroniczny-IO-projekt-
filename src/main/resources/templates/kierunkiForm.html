@@ -12,36 +12,52 @@
     <!--<div th:each="zal : ${zalogowany}">-->
         <!--<div th:text="${zal.name}"></div>-->
         <!--</div>-->
-    <form th:method="POST" th:object="${kierunekPodanie}", th:action="@{/templates/kierunkiForm.html}">
+    <form th:method="POST" th:object="${kierunekPodanie}", th:action="@{/kierunkiForm.html}">
 
             <h1>ZAPIS NA KIERUNEK</h1>
 
         <div class="form-group">
-            <label class="bmd-label-floating">Nazwa wybranego kierunku:</label>
-            <td th:text="${kierunek.name}"></td>
-            <div class="error text-danger" th:if="${#fields.hasErrors('name')}">
-                <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
-            </div>
+            <label  class="bmd-label-floating">ID wybranego kierunku:</label>
+            <!--<td th:text="${kierunek.id}" name="idKierunku" th:field="*{idKieunku}"></td>-->
+            <input id="idKierunku" th:value="${zzz}" type="number" name="idKierunku"
+                   class="form-control" th:classappend="${#fields.hasErrors('schoolName')}?'is-invalid'"
+                   required="true"/>
+
+
         </div>
-<div th:each="zal : ${zalogowany}">
+
+        <div class="form-group">
+            <label class="bmd-label-floating">Nazwa wybranego kierunku:</label>
+            <!--<td th:text="${kierunek.name}" name="nazwaKierunku" th:field="*{nazwaKierunku}"></td>-->
+            <input id="nazwaKierunku" th:value="${kierunek.name}" type="text" name="nazwaKierunku"
+                   class="form-control" th:classappend="${#fields.hasErrors('nazwaKierunku')}?'is-invalid'"
+                   required="true"/>
+        </div>
+
 
             <div class="form-group">
                 <label class="bmd-label-floating">Imie:</label>
-                <td th:text="${zal.name}"></td>
-                <div class="error text-danger" th:if="${#fields.hasErrors('name')}">
-                    <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+                <div th:each="zal : ${zalogowany}">
+                <!--<td th:text="${zal.name}" name="name" th:field="*{name}"></td>-->
+                    <input id="name" th:value="${zalogowany.name}" type="text" name="name"
+                           class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid'"
+                           required="true"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="bmd-label-floating">Nazwisko:</label>
-                <td th:text="${zal.surname}"></td>
-                <div class="error text-danger" th:if="${#fields.hasErrors('zalogowany.surname')}">
-                    <p th:each="err : ${#fields.errors('surname')}" th:text="${err}"></p>
+
+                <div th:each="zal : ${zalogowany}">
+                <!--<td th:text="${zal.surname}" name="surname" th:field="*{surname}"></td>-->
+                    <input id="surname" th:value="${zalogowany.surname}" type="text" name="surname"
+                           class="form-control" th:classappend="${#fields.hasErrors('surname')}?'is-invalid'"
+                           required="true"/>
                 </div>
 
             </div>
-</div>
+
+
             <div class="form-group">
                 <label for="schoolName" class="bmd-label-floating">Nazwa ukończonej szkoły:</label>
                 <input id="schoolName" type="text" th:field="*{schoolName}"
