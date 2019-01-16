@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <label for="liczbaMiejsc" class="bmd-label-floating">Liczba miejsc:</label>
-                <input id="liczbaMiejsc" type="number"
+                <input id="liczbaMiejsc" type="number" name="liczbaMiejsc" th:value="*{liczbaMiejsc}"
                        class="form-control" th:classappend="${#fields.hasErrors('liczbaMiejsc')}?'is-invalid'"
                        required="true"/>
                 <div class="error text-danger" th:if="${#fields.hasErrors('liczbaMiejsc')}">
@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label for="opis" class="bmd-label-floating">Opis:</label>
-                <textarea id="opis" type="text"
+                <textarea id="opis" type="text" name="opis" th:value="*{opis}"
                           class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"
                           required="true"></textarea>
                 <div class="error text-danger" th:if="${#fields.hasErrors('opis')}">

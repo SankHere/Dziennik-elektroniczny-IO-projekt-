@@ -7,9 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface KierunkiRepository extends JpaRepository<Kierunki, Long> {
 
     Kierunki findByName(String name);
+
+    @Query("SELECT kier FROM Kierunki kier WHERE kier.status = :status ")
+    List<Kierunki> findAllKierunkiUsingStatus(@Param("status") int status);
 
     @Query("SELECT k FROM Kierunki k WHERE " +
             "(" +
