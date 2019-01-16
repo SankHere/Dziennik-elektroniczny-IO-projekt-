@@ -8,17 +8,11 @@
 <body class="card">
 <div th:replace="shared/header :: header('userList')"/>
 
-
-
     <div id="main" class="card-body">
 
-
-        <H1>LISTA WSZYSTKICH UŻYTKOWNIKÓW</H1>
+        <H1>LISTA STUDENTÓW</H1>
         <!--<H3>Implementacja widoku z wykorzystaniem technologii szablonów Thymeleaf</H3>!-->
         <BR>
-
-
-
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -45,7 +39,7 @@
                     <!--<td th:text="${u.id-stypendium}"></td>-->
 
 
-                    <td sec:authorize="hasRole('ROLE_DZIEKANAT')">
+                    <td sec:authorize="hasRole('ROLE_NAUCZYCIEL')">
                         <a class="btn btn-danger" th:href="@{userList.html(did=${u.id})}">Wstaw ocene!</a>
                         <!--<a class="btn btn-success" th:href="@{trainingRoomForm.html(id=${trainingRoom.id})}">Edytuj</a>-->
                     </td>

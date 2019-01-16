@@ -1,34 +1,36 @@
 package edu.uph.ii.platformy.controllers;
 
 
+
+import edu.uph.ii.platformy.models.Role;
+import edu.uph.ii.platformy.models.User;
+import edu.uph.ii.platformy.repositories.RoleRepository;
 import edu.uph.ii.platformy.repositories.UserRepository;
-import edu.uph.ii.platformy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class UserListController {
 
-    //private UserService userService;
+
     @Autowired
     private UserRepository userRepository;
-
-
-
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping(value="/userList.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showUserList(Model model){
-        model.addAttribute("user", userRepository.findAll());
+
+        Role r = roleRepository.findRoleByType(Role.Types.ROLE_STUDENT);
+//
+        List<User> user = userRepository.findByRoles(r);
+
+        model.addAttribute("user", user);
         return  "userList";
     }
 

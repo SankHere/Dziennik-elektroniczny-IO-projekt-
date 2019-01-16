@@ -22,8 +22,8 @@
             <li class="nav-item">
                 <a class="nav-link" th:classappend="${pageName eq 'home'}?'active'" th:href="@{/}" >Strona główna</a>
             </li>
-          <li class="nav-item" sec:authorize="hasRole('ROLE_DZIEKANAT')">
-                <a class="nav-link" th:classappend="${pageName eq 'userList'}?'active'" th:href="@{/userList.html}">Lista Studentów</a>
+          <li class="nav-item" sec:authorize="hasRole('ROLE_NAUCZYCIEL')">
+                <a class="nav-link" th:classappend="${pageName eq 'userList'}?'active'" th:href="@{/userList.html}">Wstaw Ocene</a>
             </li>
             <!--<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">-->
                  <!--<a class="nav-link" th:classappend="${pageName eq 'vehicleForm'}?'active'"  th:href="@{/vehicleForm.html}">Nowy pojazd</a>-->
