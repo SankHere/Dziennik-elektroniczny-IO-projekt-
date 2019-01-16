@@ -20,13 +20,11 @@ public class SpecjalnosciServiceImpl implements SpecjalnosciService {
 
 
     @Override
-    public Page<Specjalnosci> getAllSpecjalnosci(SpecjalnoscFilter search, Pageable pageable) {
+    public Page<Specjalnosci> getAllSpecjalnosci(Pageable pageable) {
         Page page;
-        if(search.isEmpty()){
+
             page = specjalnosciRepositry.findAll(pageable);
-        }else{
-            page = specjalnosciRepositry.findAllSpecjalnosciUsingFilter(search.getPhraseLIKE(), pageable);
-        }
+
 
         return page;
 
