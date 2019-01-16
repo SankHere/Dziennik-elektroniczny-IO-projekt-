@@ -1,7 +1,9 @@
 package edu.uph.ii.platformy.controllers;
 
 import edu.uph.ii.platformy.controllers.commands.SpecjalnoscFilter;
+import edu.uph.ii.platformy.models.Specjalnosci;
 import edu.uph.ii.platformy.models.User;
+import edu.uph.ii.platformy.repositories.Podania.PodanieSpecjalnosciRepository;
 import edu.uph.ii.platformy.repositories.UserRepository;
 import edu.uph.ii.platformy.services.SpecjalnosciService;
 import lombok.extern.log4j.Log4j2;
@@ -32,6 +34,9 @@ public class SpecjalnosciListController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PodanieSpecjalnosciRepository podanieSpecjalnosciRepository;
+
 
     @RequestMapping(value="/specjalnosciList.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showSpecjalnosciList(Model model, Pageable pageable){
@@ -39,8 +44,19 @@ public class SpecjalnosciListController {
         String currentPrincipalName = authentication.getName();
         User zalogowany = userRepository.findByUsername(currentPrincipalName);
         model.addAttribute("zalogowany", zalogowany);
-        model.addAttribute("specjalnosciListPage", specjalnosciService.getAllSpecjalnosci(pageable));
-        return "specjalnosciList";
+
+        Specjalnosci specjalnosci = zalogowany.getSpecjalnosci();
+
+        if(specjalnosci.getId()==4){
+            model.addAttribute("specjalnosciListPage", specjalnosciService.getAllSpecjalnosci(pageable));
+            return "specjalnosciList";
+
+        }
+
+
+        else {
+            return "redirect:";
+        }
     }
 
     @Secured("ROLE_ADMIN")

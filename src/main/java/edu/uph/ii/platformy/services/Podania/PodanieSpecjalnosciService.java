@@ -9,9 +9,9 @@ public interface PodanieSpecjalnosciService {
 
     Page<PodanieSpecjalnosci> getAllPodanieSpecjalnosci(Pageable pageable);
 
-    void deletePodanieSpecjalnosci(Long id);
-
     PodanieSpecjalnosci getPodanieSpecjalnosci(Long id);
+
+    void deletePodanieSpecjalnosci(long id1, long id2);
 
     void savePodanieSpecjalnosci(PodanieSpecjalnosci podanieSpecjalnosci);
 }

@@ -11,8 +11,7 @@ import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "podaniespecjalnosci")
 @NoArgsConstructor
 public class PodanieSpecjalnosci {
 
@@ -21,27 +20,27 @@ public class PodanieSpecjalnosci {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String opis;
+    private String name;
+    private String surname;
+    private String nazwaSpecjalnosci;
 
-    @Valid
-    @ManyToOne
-    @JoinColumn(name="id_specjalnosci", nullable = false)
-    private Specjalnosci specjalnosci;
+    //private String opis;
+
+    private int idSpecjalnosci;
+    private int idUsera;
 
 
-
-    public PodanieSpecjalnosci(Long id, String opis, Specjalnosci specjalnosci){
-        this(opis, specjalnosci);
+    public PodanieSpecjalnosci(Long id, String name, String surname, String nazwaSpecjalnosci, int idSpecjalnosci, int idUsera){
+        this(name, surname, nazwaSpecjalnosci, idSpecjalnosci,idUsera);
         this.id=id;
     }
 
-    public PodanieSpecjalnosci(String opis, Specjalnosci specjalnosci){
-
-        this.opis=opis;
-        this.specjalnosci=specjalnosci;
-
-
-
+    public PodanieSpecjalnosci(String name, String surname, String nazwaSpecjalnosci, int idSpecjalnosci, int idUsera){
+        this.name=name;
+        this.surname=surname;
+        this.nazwaSpecjalnosci=nazwaSpecjalnosci;
+        this.idSpecjalnosci=idSpecjalnosci;
+        this.idUsera=idUsera;
     }
 
 

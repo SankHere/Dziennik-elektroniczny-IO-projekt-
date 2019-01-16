@@ -14,12 +14,6 @@ public interface SpecjalnosciRepository extends JpaRepository<Specjalnosci, Long
 
 
 
-    @Query("SELECT k FROM Specjalnosci k WHERE " +
-            "(" +
-            ":phrase is null OR :phrase = '' OR "+
-            "upper(k.name) LIKE upper(:phrase) " +
-            ") " )
-    Page<Specjalnosci> findAllSpecjalnosciUsingFilter(@Param("phrase") String k, Pageable pageable);
 
 
 }

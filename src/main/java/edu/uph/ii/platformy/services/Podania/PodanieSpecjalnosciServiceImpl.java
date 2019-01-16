@@ -22,13 +22,13 @@ public class PodanieSpecjalnosciServiceImpl implements PodanieSpecjalnosciServic
     @Override
     public Page<PodanieSpecjalnosci> getAllPodanieSpecjalnosci(Pageable pageable) {
         Page page;
-
             page = podanieSpecjalnosciRepository.findAll(pageable);
-
-
         return page;
-
     }
+
+
+
+
 
     @Transactional
     @Override
@@ -41,12 +41,16 @@ public class PodanieSpecjalnosciServiceImpl implements PodanieSpecjalnosciServic
     }
 
     @Override
-    public void deletePodanieSpecjalnosci(Long id) {
+    public void deletePodanieSpecjalnosci(long id1, long id2) {
         // w przypadku usuwania obsługa wyjątku VehicleNotFoundException nie jest niezbędna dla bezpieczeństwa systemu
-        if(podanieSpecjalnosciRepository.existsById(id) == true){
-            podanieSpecjalnosciRepository.deleteById(id);
+
+
+
+        if(podanieSpecjalnosciRepository.existsById(id1) == true){
+            podanieSpecjalnosciRepository.zmienSpecjalnosc(id1,id2);
+            podanieSpecjalnosciRepository.deleteById(id1);
         }else{
-            throw new PodanieNotFoundException(id);
+            throw new PodanieNotFoundException(id1);
         }
     }
 
