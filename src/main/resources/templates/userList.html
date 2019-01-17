@@ -16,46 +16,35 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID użytkownika</th>
-                    <th>Imie i nazwisko</th>
+                    <th>Imie</th>
+                    <th>Nazwisko</th>
                     <th>Email</th>
                     <th>Kierunek</th>
                     <th>Specjalność</th>
-                    <th>ID ubezpieczenia</th>
-                    <th>ID stypendium</th>
 
-                    <th sec:authorize="hasRole('DZIEKANAT')">Opcje</th>
+                    <th sec:authorize="hasRole('ROLE_NAUCZYCIEL')">Opcje</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="u : ${user}">
 
-                    <td th:text="${u.id}"></td>
-                    <td th:text="${u.name + u.surname}"></td>
+                    <td th:text="${u.name}"></td>
+                    <td th:text="${u.surname}"></td>
                     <td th:text="${u.email}"></td>
                     <td th:text="${u.kierunki.name}"></td>
+                    <td th:text="${u.specjalnosci.name}"></td>
                     <!--<td th:text="${u.id_ubezpieczenia}"></td>-->
                     <!--<td th:text="${u.id-stypendium}"></td>-->
 
 
                     <td sec:authorize="hasRole('ROLE_NAUCZYCIEL')">
-                        <a class="btn btn-danger" th:href="@{userList.html(did=${u.id})}">Wstaw ocene!</a>
-                        <!--<a class="btn btn-success" th:href="@{trainingRoomForm.html(id=${trainingRoom.id})}">Edytuj</a>-->
+                        <a class="btn btn-danger" th:href="@{wstawianieOceny.html(id=${u.id})}">Wstaw ocene</a>
                     </td>
-
                 </tr>
-
                 </tbody>
             </table>
-
-
-
         </div>
-
-
-
-    </div>
 
 <div th:replace="shared/footer :: footer"></div>
 </body>

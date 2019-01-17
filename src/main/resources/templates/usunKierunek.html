@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+    <title>Usun kierunek</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('podanieKierunek')"/>
+
+<div class="card-body container">
+
+    <form th:method="POST" th:object="${kierunek}" th:action="@{/usunKierunek.html}">
+        <fieldset>
+            <h1>Usuwanie kierunku</h1>
+
+            <th:block th:each="e : ${#fields.detailedErrors()}">
+                <div class="alert alert-danger">
+                    <span th:text="${e.global}? '*' : ${e.fieldName}">field</span>
+                    <span th:text="${e.message}">text</span>
+                </div>
+            </th:block>
+
+            <div class="form-group">
+                <!--<label for="status" class="bmd-label-floating">Powód usunięcia:</label>-->
+                <input id="id" type="hidden" name="id" th:value="*{id}"
+                       class="form-control" th:classappend="${#fields.hasErrors('id')}?'is-invalid'"
+                       required="true"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('id')}">
+                    <p th:each="err : ${#fields.errors('id')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="bmd-label-floating">Nazwa:</label>
+                <input id="name" name="name" type="text" readonly th:value="*{name}"
+                       class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('name')}">
+                    <span th:each="err : ${#fields.errors('name')}" th:text="${err}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="liczbaMiejsc" class="bmd-label-floating">Liczba miejsc:</label>
+                <input id="liczbaMiejsc" name="liczbaMiejsc" type="text" readonly th:value="*{liczbaMiejsc}"
+                       class="form-control" th:classappend="${#fields.hasErrors('liczbaMiejsc')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('liczbaMiejsc')}">
+                    <p th:each="err : ${#fields.errors('liczbaMiejsc')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+                <!--th:value="*{#dates.format(createdDate,'dd-MM-yyyy')}"-->
+            <div class="form-group">
+                <label for="createdDate" class="bmd-label-floating">Data utworzenia:</label>
+                <input id="createdDate" name="createdDate" type="text" readonly th:value="*{createdDate}"
+                       class="form-control" th:classappend="${#fields.hasErrors('createdDate')}?'is-invalid'"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('createdDate')}">
+                    <p th:each="err : ${#fields.errors('createdDate')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="opis" class="bmd-label-floating">Powód usunięcia:</label>
+                <textarea id="opis" type="text" name="opis"
+                          class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"
+                          required="true"></textarea>
+                <div class="error text-danger" th:if="${#fields.hasErrors('opis')}">
+                    <p th:each="err : ${#fields.errors('opis')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!--<label for="status" class="bmd-label-floating">Powód usunięcia:</label>-->
+                <input id="status" type="hidden" name="status" th:value="3"
+                          class="form-control" th:classappend="${#fields.hasErrors('status')}?'is-invalid'"
+                          required="true"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('status')}">
+                    <p th:each="err : ${#fields.errors('status')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-raised">Wyślij</button>
+        </fieldset>
+    </form>
+</div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

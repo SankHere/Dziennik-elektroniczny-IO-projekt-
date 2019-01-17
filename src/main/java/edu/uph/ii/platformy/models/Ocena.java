@@ -1,17 +1,18 @@
 package edu.uph.ii.platformy.models;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-
-
 @Entity
 @Table(name = "ocena")
-@Getter @Setter
+@Data
+@NoArgsConstructor
 public class Ocena {
 
     @Id
@@ -19,6 +20,7 @@ public class Ocena {
     private long id;
 
     @Positive
+    @Max(5)
     private double ocena;
 
     @Valid
@@ -31,12 +33,12 @@ public class Ocena {
     @JoinColumn(name = "id_usera", nullable = false)
     private User user;
 
-    public Ocena(long id, Double ocena, Egzamin egzamin, User user) {
-        this(ocena, egzamin, user);
+    public Ocena(long id, User user, Egzamin egzamin, Double ocena) {
+        this(user, egzamin, ocena);
         this.id = id;
     }
 
-    public Ocena(Double ocena, Egzamin egzamin, User user) {
+    public Ocena(User user, Egzamin egzamin, Double ocena) {
         this.ocena = ocena;
         this.egzamin = egzamin;
         this.user = user;
