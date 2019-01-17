@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface KierunkiRepository extends JpaRepository<Kierunki, Long> {
 
+
     Kierunki findByName(String name);
 
     @Query("SELECT kier FROM Kierunki kier WHERE kier.status = :status ")
@@ -20,12 +21,9 @@ public interface KierunkiRepository extends JpaRepository<Kierunki, Long> {
             "(" +
             ":phrase is null OR :phrase = '' OR "+
             "upper(k.name) LIKE upper(:phrase) " +
-            //"upper(k.) LIKE upper(:phrase) OR " +
-           // "upper(p.kategoria.name) LIKE upper(:phrase)" +
             ") " +
             "AND " +
             "(:liczbaMiejsc is null OR :liczbaMiejsc >= k.liczbaMiejsc) " )
-        // "AND (:max is null OR :max >= v.price)")
     Page<Kierunki> findAllKierunkiUsingFilter(@Param("phrase") String k, @Param("liczbaMiejsc") int liczbaMiejsc, Pageable pageable);
 
 }

@@ -18,6 +18,16 @@
                     <span th:text="${e.message}">text</span>
                 </div>
             </th:block>
+            <H1>Wstaw ocene</H1>
+            <lable class="bmd-label-floating">Imie:</lable>
+            <div th:text="${user.name}"></div>
+            <hr>
+            <lable class="bmd-label-floating">Nazwisko:</lable>
+            <div th:text="${user.surname}"></div>
+            <hr>
+            <lable class="bmd-label-floating">Kierunek:</lable>
+            <div th:text="${user.Kierunki.name}"></div>
+            <hr>
 
             <div class="form-group">
                 <label for="user" class="bmd-label-floating"></label>

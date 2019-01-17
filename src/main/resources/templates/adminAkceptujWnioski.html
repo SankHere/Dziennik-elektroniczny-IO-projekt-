@@ -15,7 +15,9 @@
 
 
     <H1>LISTA WNIOSKOW</H1>
-    <H3>Kierunki</H3>
+    <H3>Dodanie nowego kierunku</H3>
+
+    <!--Dodanie nowgo kierunku-->
     <table class="table table-striped">
         <thead>
         <tr>
@@ -37,7 +39,39 @@
             <td th:text="${kierunki.opis}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{akceptuj.html(id=${kierunki.id})}">Akceptuj</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{akceptujKierunek.html(id=${kierunki.id})}">Akceptuj</a></td>
+
+        </tr>
+
+        </tbody>
+    </table><br>
+    <hr>
+
+    <!--Usuniecie kierunku-->
+    <H3>Usuniecie kierunku</H3>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>DataUtworzenia</th>
+            <th>Liczba miejsc</th>
+            <th>Powód usuniecia</th>
+            <th>Status</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Opcje</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="delK : ${deleteKierunki}">
+
+            <td th:text="${delK.name}"></td>
+            <td th:text="${#dates.format(delK.createdDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${delK.liczbaMiejsc}"></td>
+            <td th:text="${delK.opis}"></td>
+            <td class="text-danger">Oczekuje akceptacji</td>
+
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{deleteKierunek.html(id=${delK.id})}">Akceptuj</a></td>
 
         </tr>
 

@@ -24,6 +24,7 @@
                 <th>Liczba miejsc</th>
                 <th>Opis</th>
                 <th sec:authorize="hasRole('ROLE_USER')">Opcje</th>
+                <th sec:authorize="hasRole('ROLE_DZIEKANAT')">Opcje</th>
 
             </tr>
             </thead>
@@ -37,9 +38,9 @@
 
 
                 <td sec:authorize="hasRole('ROLE_USER')"><a th:href="@{kierunkiForm.html(id=${kierunki.id})}">Zapis</a></td>
+                <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{usunKierunek.html(id=${kierunki.id})}">Usuń</a></td>
 
             </tr>
-
             </tbody>
         </table>
 
