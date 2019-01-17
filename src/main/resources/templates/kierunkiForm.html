@@ -34,6 +34,15 @@
                    required="true"/>
         </div>
 
+        <div class="form-group">
+            <!--<label class="bmd-label-floating">Imie:</label>-->
+            <div th:each="zal : ${zalogowany}">
+                <!--<td th:text="${zal.name}" name="name" th:field="*{name}"></td>-->
+                <input id="id" th:value="${zalogowany.id}" type="hidden" name="idUser"
+                       class="form-control" th:classappend="${#fields.hasErrors('idUser')}?'is-invalid'"
+                       required="true"/>
+            </div>
+        </div>
 
             <div class="form-group">
                 <!--<label class="bmd-label-floating">Imie:</label>-->
