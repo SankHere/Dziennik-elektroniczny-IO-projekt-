@@ -40,6 +40,9 @@
             <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
                 <a class="nav-link" th:classappend="${pageName eq 'ubezpieczeniaList'}?'active'"  th:href="@{/ubezpieczeniaList.html}">Ubezpieczenia</a>
             </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
+                <a class="nav-link"  th:classappend="${pageName eq 'mojeOceny'}?'active'" th:href="@{/mojeOceny.html}">Moje oceny</a>
+            </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_DZIEKANAT')">
                 <a class="nav-link" th:classappend="${pageName eq 'ubezpieczeniaList'}?'active'"  th:href="@{/ubezpieczeniaList.html}">Ubezpieczenia</a>
             </li>
@@ -52,6 +55,7 @@
             <li class="nav-item" sec:authorize="isAnonymous()">
                 <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" href="/registrationForm.html">Rejestracja</a>
             </li>
+
         </ul>
     </div>
 

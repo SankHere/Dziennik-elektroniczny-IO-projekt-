@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-@SessionAttributes("searchCommand")
 @Log4j2
 public class KierunkiListController {
 

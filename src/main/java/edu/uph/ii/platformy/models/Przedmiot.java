@@ -5,6 +5,7 @@ package edu.uph.ii.platformy.models;
 import edu.uph.ii.platformy.validators.annotations.InvalidValues;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @Entity
 @Table(name = "przedmiot")
 @Getter @Setter
+@NoArgsConstructor
 public class Przedmiot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +34,13 @@ public class Przedmiot {
     @JoinColumn(name = "id_kierunku", nullable = false)
     private Kierunki kierunki;
 
-    public Przedmiot(long id, String name) {
-        this(name);
+    public Przedmiot(long id, String name, Kierunki kierunki) {
+        this(name, kierunki);
         this.id = id;
     }
 
-    public Przedmiot(String name) {
+    public Przedmiot(String name, Kierunki kierunki) {
         this.name = name;
+        this.kierunki = kierunki;
     }
 }
