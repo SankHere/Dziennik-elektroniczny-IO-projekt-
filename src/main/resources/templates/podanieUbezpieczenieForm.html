@@ -5,15 +5,15 @@
     <title>Podanie specjalności</title>
 </head>
 <body>
-<div th:replace="shared/header :: header('podanieSpecjalnosciForm')"/>
+<div th:replace="shared/header :: header('podanieUbezpieczenieForm')"/>
 
 <div class="card-body container">
 
 
 
-    <form th:method="POST" th:object="${podanieSpecjalnosci}" th:action="@{/podanieSpecjalnosciForm.html}">
+    <form th:method="POST" th:object="${podanieUbezpieczenie}" th:action="@{/podanieUbezpieczenieForm.html}">
         <fieldset>
-            <h1>Podania na specjalność</h1>
+            <h1>Podania na Ubezpieczenie</h1>
 
 
 
@@ -31,29 +31,36 @@
 
 
             <div class="form-group">
-                <label class="bmd-label-floating">Nazwa wybranego specjalności:</label>
-                <input id="nazwaSpecjalnosci" name="nazwaSpecjalnosci" type="text" th:value="${specjalnosci.name}"
+                <label class="bmd-label-floating">Nazwa wybranego ubezpieczenia:</label>
+                <input id="nazwaUbezpieczenia" name="nazwaUbezpieczenia" type="text" th:value="${ubezpieczenie.name}"
                        class="form-control" required="true" />
             </div>
 
 
             <div class="form-group">
-                <input id="idSpecjalnosci" name="idSpecjalnosci" type="hidden" th:value="${zzz}"
+                <label class="bmd-label-floating">Cena:</label>
+                <input id="price" name="price" type="text" th:value="${ubezpieczenie.price}"
                        class="form-control" required="true" />
             </div>
 
 
 
             <div class="form-group">
-                    <input id="idUsera" name="idUsera" type="hidden" th:value="${zalogowany.id}"
-                           class="form-control" required="true" />
+                <input id="idUbezpieczenia" name="idUbezpieczenia" type="hidden" th:value="${zzz}"
+                       class="form-control" required="true" />
+            </div>
 
+
+
+            <div class="form-group">
+                <input id="idUsera" name="idUsera" type="hidden" th:value="${zalogowany.id}"
+                       class="form-control" required="true" />
             </div>
 
             <div class="form-group">
 
-                    <input id="status" name="status" type="hidden" th:value="1"
-                           class="form-control" required="true" />
+                <input id="status" name="status" type="hidden" th:value="1"
+                       class="form-control" required="true" />
 
             </div>
 

@@ -27,7 +27,10 @@
 
             <td th:text="${u.name}"></td>
             <td th:text="${u.price}"></td>
-            <td>Złóż podanie</td>
+            <td><a class="btn btn-success" th:href="@{podanieUbezpieczenieForm.html(id=${u.id})}">Zapisz</a>
+            </td>
+
+
 
         </tr>
 

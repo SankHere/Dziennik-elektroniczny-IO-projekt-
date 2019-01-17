@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 public class Ubezpieczenie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     //@Size(min = 2, max = 30)
@@ -28,7 +28,7 @@ public class Ubezpieczenie {
     @Max(1000000)
     private Double price;
 
-    public Ubezpieczenie(long id, String name, Double price) {
+    public Ubezpieczenie(Long id, String name, Double price) {
         this(name, price);
         this.id = id;
     }

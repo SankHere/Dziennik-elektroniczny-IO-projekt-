@@ -25,13 +25,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="specjalnosci : ${specjalnosciListPage.content}">
 
-                <td th:text="${specjalnosci.name}"></td>
-                <td sec:authorize="hasRole('ROLE_STUDENT')">
-                    <span th:if="${zalogowany.specjalnosci.id != null}">
-                    <a class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${specjalnosci.id})}">Zapisz</a>
-                </span>
+<tr th:each="nazwa: ${specjalnosci}">
+
+                <td th:text="${nazwa.name}"></td>
+                <td><a class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${nazwa.id})}">Zapisz</a>
                 </td>
 
 
@@ -41,15 +39,12 @@
             </tbody>
         </table>
 
-        <div th:replace="shared/pagination :: pager('/specjalnosciList.html', ${specjalnosciListPage})"></div>
 
     </div>
 
     <a sec:authorize="hasRole('ADMIN')" class="btn btn-success" href="specjalnosciForm.html">Dodaj Nowy</a>
 
 </div>
-
-<a class="btn btn-success" href="specjalnosciForm.html">Dodaj Nowy</a>
 
 
 

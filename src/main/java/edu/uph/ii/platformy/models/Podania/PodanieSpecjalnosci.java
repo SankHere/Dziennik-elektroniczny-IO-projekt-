@@ -1,6 +1,7 @@
 package edu.uph.ii.platformy.models.Podania;
 
 import edu.uph.ii.platformy.models.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +12,8 @@ import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Entity
-@Table(name = "podaniespecjalnosci")
 @NoArgsConstructor
+@Data
 public class PodanieSpecjalnosci {
 
 
@@ -22,25 +23,31 @@ public class PodanieSpecjalnosci {
 
     private String name;
     private String surname;
+
+    @Column(name="created_date")
+    private Date createdDate;
+
     private String nazwaSpecjalnosci;
 
-    //private String opis;
+    private Long idSpecjalnosci;
+    private Long idUsera;
 
-    private int idSpecjalnosci;
-    private int idUsera;
+    private int status;
 
 
-    public PodanieSpecjalnosci(Long id, String name, String surname, String nazwaSpecjalnosci, int idSpecjalnosci, int idUsera){
-        this(name, surname, nazwaSpecjalnosci, idSpecjalnosci,idUsera);
+    public PodanieSpecjalnosci(Long id, String name, String surname, Date createdDate, String nazwaSpecjalnosci, Long idSpecjalnosci, Long idUsera, int status){
+        this(name, surname, createdDate, nazwaSpecjalnosci, idSpecjalnosci,idUsera,status);
         this.id=id;
     }
 
-    public PodanieSpecjalnosci(String name, String surname, String nazwaSpecjalnosci, int idSpecjalnosci, int idUsera){
+    public PodanieSpecjalnosci(String name, String surname, Date createdDate, String nazwaSpecjalnosci, Long idSpecjalnosci, Long idUsera, int status){
         this.name=name;
         this.surname=surname;
+        this.createdDate=createdDate;
         this.nazwaSpecjalnosci=nazwaSpecjalnosci;
         this.idSpecjalnosci=idSpecjalnosci;
         this.idUsera=idUsera;
+        this.status=status;
     }
 
 

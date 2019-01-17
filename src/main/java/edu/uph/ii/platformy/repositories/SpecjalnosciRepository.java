@@ -12,6 +12,7 @@ public interface SpecjalnosciRepository extends JpaRepository<Specjalnosci, Long
 
     Specjalnosci findByName(String name);
 
+    Specjalnosci findById(Specjalnosci id);
 
 
 

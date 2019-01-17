@@ -49,6 +49,143 @@
 
         </tbody>
     </table><br>
+    <br><br>
+
+
+
+    <H3>Rekrutacje na Specjalności</H3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Specjalność</th>
+            <th>Data Utworzenia</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Status</th>
+            <th sec:authorize="hasRole('ROLE_DZIEKANAT')">Opcje</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="podanieSpecjalnosci : ${podanieSpecjalnosci}">
+            <td th:text="${podanieSpecjalnosci.id}"></td>
+            <td th:text="${podanieSpecjalnosci.nazwaSpecjalnosci}"></td>
+            <td th:text="${#dates.format(podanieSpecjalnosci.createdDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${podanieSpecjalnosci.name}"></td>
+            <td th:text="${podanieSpecjalnosci.surname}"></td>
+            <td th:text="${podanieSpecjalnosci.status}"></td>
+            <td class="text-danger">Oczekuje akceptacji</td>
+
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujSpecjalnosci.html(id=${podanieSpecjalnosci.id})}">Akceptuj</a></td>
+
+        </tr>
+
+        </tbody>
+    </table><br>
+
+
+
+
+    <H3>Ubezpieczenia</H3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nazwa ubezpieczenia</th>
+            <th>Cena</th>
+            <th>Data Utworzenia</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Status</th>
+            <th sec:authorize="hasRole('ROLE_DZIEKANAT')">Opcje</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="podanieUbezpieczenie : ${podanieUbezpieczenie}">
+            <td th:text="${podanieUbezpieczenie.id}"></td>
+            <td th:text="${podanieUbezpieczenie.nazwaUbezpieczenia}"></td>
+            <td th:text="${podanieUbezpieczenie.price}"></td>
+            <td th:text="${#dates.format(podanieUbezpieczenie.createdDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${podanieUbezpieczenie.name}"></td>
+            <td th:text="${podanieUbezpieczenie.surname}"></td>
+            <td th:text="${podanieUbezpieczenie.status}"></td>
+            <td class="text-danger">Oczekuje akceptacji</td>
+
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujUbezpieczenie.html(id=${podanieUbezpieczenie.id})}">Akceptuj</a></td>
+
+        </tr>
+
+        </tbody>
+    </table><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <H3>Zmiana danych osobowych</H3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data Utworzenia</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>E-mail</th>
+            <th>Status</th>
+            <th sec:authorize="hasRole('ROLE_DZIEKANAT')">Opcje</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="podanieUser : ${podanieUser}">
+            <td th:text="${podanieUser.id}"></td>
+            <td th:text="${#dates.format(podanieUser.createdDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${podanieUser.name}"></td>
+            <td th:text="${podanieUser.surname}"></td>
+            <td th:text="${podanieUser.email}"></td>
+            <td th:text="${podanieUser.status}"></td>
+            <td class="text-danger">Oczekuje akceptacji</td>
+
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujUser.html(id=${podanieUser.id})}">Akceptuj</a></td>
+
+        </tr>
+
+        </tbody>
+    </table><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <hr>
 </div>
 <div th:replace="shared/footer :: footer"></div>
