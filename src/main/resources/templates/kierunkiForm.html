@@ -17,9 +17,9 @@
             <h1>ZAPIS NA KIERUNEK</h1>
 
         <div class="form-group">
-            <label  class="bmd-label-floating">ID wybranego kierunku:</label>
+            <!--<label  class="bmd-label-floating">ID wybranego kierunku:</label>-->
             <!--<td th:text="${kierunek.id}" name="idKierunku" th:field="*{idKieunku}"></td>-->
-            <input id="idKierunku" th:value="${zzz}" type="number" name="idKierunku"
+            <input id="idKierunku" th:value="${zzz}" type="hidden"  name="idKierunku"
                    class="form-control" th:classappend="${#fields.hasErrors('schoolName')}?'is-invalid'"
                    required="true"/>
 
@@ -27,30 +27,30 @@
         </div>
 
         <div class="form-group">
-            <label class="bmd-label-floating">Nazwa wybranego kierunku:</label>
+            <!--<label class="bmd-label-floating">Nazwa wybranego kierunku:</label>-->
             <!--<td th:text="${kierunek.name}" name="nazwaKierunku" th:field="*{nazwaKierunku}"></td>-->
-            <input id="nazwaKierunku" th:value="${kierunek.name}" type="text" name="nazwaKierunku"
+            <input id="nazwaKierunku" th:value="${kierunek.name}" type="hidden" name="nazwaKierunku"
                    class="form-control" th:classappend="${#fields.hasErrors('nazwaKierunku')}?'is-invalid'"
                    required="true"/>
         </div>
 
 
             <div class="form-group">
-                <label class="bmd-label-floating">Imie:</label>
+                <!--<label class="bmd-label-floating">Imie:</label>-->
                 <div th:each="zal : ${zalogowany}">
                 <!--<td th:text="${zal.name}" name="name" th:field="*{name}"></td>-->
-                    <input id="name" th:value="${zalogowany.name}" type="text" name="name"
+                    <input id="name" th:value="${zalogowany.name}" type="hidden" name="name"
                            class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid'"
                            required="true"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="bmd-label-floating">Nazwisko:</label>
+                <!--<label class="bmd-label-floating">Nazwisko:</label>-->
 
                 <div th:each="zal : ${zalogowany}">
                 <!--<td th:text="${zal.surname}" name="surname" th:field="*{surname}"></td>-->
-                    <input id="surname" th:value="${zalogowany.surname}" type="text" name="surname"
+                    <input id="surname" th:value="${zalogowany.surname}" type="hidden" name="surname"
                            class="form-control" th:classappend="${#fields.hasErrors('surname')}?'is-invalid'"
                            required="true"/>
                 </div>

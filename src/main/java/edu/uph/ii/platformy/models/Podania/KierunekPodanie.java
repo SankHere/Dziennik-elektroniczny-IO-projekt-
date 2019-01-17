@@ -25,7 +25,7 @@ public class KierunekPodanie {
     private String name;
     private String surname;
 
-    @Max(6)
+    @Max(5)
     private int avg;
 
 
