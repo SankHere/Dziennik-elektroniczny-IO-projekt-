@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -69,6 +70,7 @@ public class KierunkiFormController {
         //saveKierunekPodanie(a);
 
         kierunekPodanie.setStatus(1);
+        kierunekPodanie.setCreatedDate(new Date());
         kierunekPodanieRepository.saveAndFlush(kierunekPodanie);
 
 
