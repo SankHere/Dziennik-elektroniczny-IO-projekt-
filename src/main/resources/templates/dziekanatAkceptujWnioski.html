@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Lista Wnioskow</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('dziekanatAkceptujWnioski')"/>
+
+
+<div id="main" class="card-body">
+
+
+    <H1>LISTA WNIOSKOW</H1>
+    <H3>Rekrutacje na kierunki</H3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kierunek</th>
+            <th>DataUtworzenia</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Średnia ucznia</th>
+            <th>Nazwa poprzedniej szkoły</th>
+            <th>Status</th>
+            <th sec:authorize="hasRole('ROLE_DZIEKANAT')">Opcje</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kierunekpodanie : ${kierunekpodanie}">
+            <td th:text="${kierunekpodanie.id}"></td>
+            <td th:text="${kierunekpodanie.nazwaKierunku}"></td>
+            <td th:text="${#dates.format(kierunekpodanie.createdDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${kierunekpodanie.name}"></td>
+            <td th:text="${kierunekpodanie.surname}"></td>
+            <td th:text="${kierunekpodanie.avg}"></td>
+            <td th:text="${kierunekpodanie.schoolName}"></td>
+            <td th:text="${kierunekpodanie.status}"></td>
+            <td class="text-danger">Oczekuje akceptacji</td>
+
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujRekrutacja.html(id=${kierunekpodanie.id})}">Akceptuj</a></td>
+
+        </tr>
+
+        </tbody>
+    </table><br>
+    <hr>
+</div>
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>
