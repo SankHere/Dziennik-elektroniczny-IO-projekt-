@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 //Artur
-
 @Controller
 public class AdminAkceptujWnioskiController {
     @Autowired

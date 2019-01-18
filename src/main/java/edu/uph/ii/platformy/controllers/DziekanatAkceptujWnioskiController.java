@@ -82,7 +82,6 @@ public class DziekanatAkceptujWnioskiController {
 
         if(id>0) {
 
-
             KierunekPodanie kierunekPodanie = kierunekPodanieRepository.findById(id).get();
             Long b = kierunekPodanie.getIdKierunku(); //pobieranie id z modelu
             Long a = kierunekPodanie.getIdUser();
@@ -128,7 +127,15 @@ public class DziekanatAkceptujWnioskiController {
         }
     }
 
+    //akceptowanie wniosków
+    @RequestMapping(value = "/odrzucRekrutacja.html", method = RequestMethod.GET )
+    public String odrzucRekrutacje(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
+        KierunekPodanie kier = kierunekPodanieRepository.findById(id).get();
+        kierunekPodanieRepository.delete(kier);
+
+        return "redirect:dziekanatAkceptujWnioski.html";
+    }
 
     @RequestMapping(value = "/akceptujSpecjalnosci.html", method = RequestMethod.GET )
     public String akceptujSpecjalnosci(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){

@@ -43,7 +43,10 @@
             <td th:text="${kierunekpodanie.status}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujRekrutacja.html(id=${kierunekpodanie.id})}">Akceptuj</a></td>
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')">
+                <a class="btn btn-success" th:href="@{akceptujRekrutacja.html(id=${kierunekpodanie.id})}">Akceptuj</a>
+                <a class="btn btn-danger" th:href="@{odrzucRekrutacja.html(id=${kierunekpodanie.id})}">Odrzuc</a>
+            </td>
 
         </tr>
 
@@ -119,26 +122,6 @@
 
         </tbody>
     </table><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <H3>Zmiana danych osobowych</H3>
