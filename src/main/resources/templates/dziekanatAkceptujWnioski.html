@@ -80,7 +80,8 @@
             <td th:text="${podanieSpecjalnosci.status}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujSpecjalnosci.html(id=${podanieSpecjalnosci.id})}">Akceptuj</a></td>
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujSpecjalnosci.html(id=${podanieSpecjalnosci.id})}">Akceptuj</a>
+                <a th:href="@{odrzucSpecjalnosci.html(id=${podanieSpecjalnosci.id})}">Odrzuć</a></td>
 
         </tr>
 
@@ -116,7 +117,8 @@
             <td th:text="${podanieUbezpieczenie.status}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujUbezpieczenie.html(id=${podanieUbezpieczenie.id})}">Akceptuj</a></td>
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujUbezpieczenie.html(id=${podanieUbezpieczenie.id})}">Akceptuj</a>
+                <a th:href="@{odrzucUbezpieczenie.html(id=${podanieUbezpieczenie.id})}">Odrzuć</a></td>
 
         </tr>
 
@@ -187,7 +189,8 @@
             <td th:text="${podanieUser.status}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujUser.html(id=${podanieUser.id})}">Akceptuj</a></td>
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujUser.html(id=${podanieUser.id})}">Akceptuj</a>
+                <a th:href="@{odrzucUser.html(id=${podanieUser.id})}">Odrzuć</a></td>
 
         </tr>
 

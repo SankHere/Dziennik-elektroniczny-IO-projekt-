@@ -358,6 +358,65 @@ if(id>1){
 
 
 
+    @RequestMapping(value = "/odrzucSpecjalnosci.html", method = RequestMethod.GET )
+    public String odrzucSpecjalnosci(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+
+        if(id>0) {
+
+
+            PodanieSpecjalnosci podanieSpecjalnosci = podanieSpecjalnosciRepository.findById(id).get(); //id podania
+
+
+            podanieSpecjalnosci.setStatus(3);
+            podanieSpecjalnosciRepository.save(podanieSpecjalnosci);
+            //podanieSpecjalnosciRepository.deleteById(id);
+            return "redirect:dziekanatAkceptujWnioski.html";
+
+        }else {
+
+            return "redirect:dziekanatAkceptujWnioski.html";
+        }
+    }
+
+
+
+    @RequestMapping(value = "/odrzucUbezpieczenie.html", method = RequestMethod.GET )
+    public String odrzucUbezpieczenie(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+
+        if(id>0) {
+
+
+            PodanieUbezpieczenie podanieUbezpieczenie = podanieUbezpieczenieRepository.findById(id).get(); //id podania
+
+
+            podanieUbezpieczenie.setStatus(3);
+            podanieUbezpieczenieRepository.save(podanieUbezpieczenie);
+            return "redirect:dziekanatAkceptujWnioski.html";
+
+        }else {
+
+            return "redirect:dziekanatAkceptujWnioski.html";
+        }
+    }
+
+    @RequestMapping(value = "/odrzucUser.html", method = RequestMethod.GET )
+    public String odrzucUser(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+
+        if(id>0) {
+
+
+            PodanieUser podanieUser = podanieUserRepository.findById(id).get(); //id podania
+
+
+            podanieUser.setStatus(3);
+            podanieUserRepository.save(podanieUser);
+            return "redirect:dziekanatAkceptujWnioski.html";
+
+        }else {
+
+            return "redirect:dziekanatAkceptujWnioski.html";
+        }
+    }
 
 
 
