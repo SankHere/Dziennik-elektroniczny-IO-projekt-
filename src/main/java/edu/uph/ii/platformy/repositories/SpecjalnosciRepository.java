@@ -8,14 +8,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface SpecjalnosciRepository extends JpaRepository<Specjalnosci, Long> {
 
     Specjalnosci findByName(String name);
 
     Specjalnosci findById(Specjalnosci id);
 
-
-
+    List<Specjalnosci> findSpecjalnosciByKierunki(Kierunki kierunki);
 
 }
 
