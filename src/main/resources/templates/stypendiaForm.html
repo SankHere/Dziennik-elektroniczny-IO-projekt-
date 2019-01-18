@@ -17,10 +17,18 @@
         <h1>Przyznawanie stypendium</h1>
 
         <div class="form-group">
+
+            <input id="idUser" name="idUser" type="hidden" th:value="${zalogowany.id}"
+                   class="form-control" required="true" />
+
+        </div>
+
+        <div class="form-group">
             <label class="bmd-label-floating">Imie studenta:</label>
            <td th:text="${zalogowany.name}"></td>
 
         </div>
+
 
         <div class="form-group">
 

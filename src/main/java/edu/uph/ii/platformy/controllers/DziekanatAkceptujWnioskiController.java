@@ -148,7 +148,7 @@ public class DziekanatAkceptujWnioskiController {
 
             StypendiumPodanie stypendiumPodanie = stypendiumPodanieRepository.findById(id).get(); //id podania
             Long test2 = stypendiumPodanie.getId(); //pobieranie id z modelu
-            Long a = stypendiumPodanie.getUser().getId(); //pobieranie uzytkownika z jego id z podania
+            Long a = stypendiumPodanie.getIdUser(); //pobieranie uzytkownika z jego id z podania
 
             if (a > 0) {
                 Optional<User> opt = userRepository.findById(a); //znalezienie takiego uzytkownika
