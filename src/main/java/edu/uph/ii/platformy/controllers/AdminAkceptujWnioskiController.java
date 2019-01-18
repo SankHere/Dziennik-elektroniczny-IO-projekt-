@@ -1,13 +1,7 @@
 package edu.uph.ii.platformy.controllers;
 
-import edu.uph.ii.platformy.models.Kierunki;
-import edu.uph.ii.platformy.models.Przedmiot;
-import edu.uph.ii.platformy.models.Role;
-import edu.uph.ii.platformy.models.User;
-import edu.uph.ii.platformy.repositories.KierunkiRepository;
-import edu.uph.ii.platformy.repositories.PrzedmiotRepository;
-import edu.uph.ii.platformy.repositories.RoleRepository;
-import edu.uph.ii.platformy.repositories.UserRepository;
+import edu.uph.ii.platformy.models.*;
+import edu.uph.ii.platformy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +26,8 @@ public class AdminAkceptujWnioskiController {
     private RoleRepository roleRepository;
     @Autowired
     private PrzedmiotRepository przedmiotRepository;
+    @Autowired
+    private OcenaRepository ocenaRepository;
 
     @RequestMapping(value="/adminAkceptujWnioski.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showWnioskiList(Model model){
@@ -101,6 +97,21 @@ public class AdminAkceptujWnioskiController {
         kier.setStatus(2);
         kierunkiRepository.save(kier);
         return  "redirect:adminAkceptujWnioski.html";
+    }
+
+    @RequestMapping(value="/usunStudenta.html", method = {RequestMethod.GET, RequestMethod.POST})
+    public String usunStudenta(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+
+
+        User user = userRepository.findById(id).get();
+        List<Ocena> ocena = ocenaRepository.findByUser(user);
+
+        for(Ocena o: ocena){
+            ocenaRepository.delete(o);
+        }
+        userRepository.delete(user);
+
+        return  "redirect:userList.html";
     }
 }
 

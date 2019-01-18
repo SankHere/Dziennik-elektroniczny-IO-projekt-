@@ -23,6 +23,7 @@
                     <th>Specjalność</th>
 
                     <th sec:authorize="hasRole('ROLE_NAUCZYCIEL')">Opcje</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Opcje</th>
 
                 </tr>
                 </thead>
@@ -34,12 +35,12 @@
                     <td th:text="${u.email}"></td>
                     <td th:text="${u.kierunki.name}"></td>
                     <td th:text="${u.specjalnosci.name}"></td>
-                    <!--<td th:text="${u.id_ubezpieczenia}"></td>-->
-                    <!--<td th:text="${u.id-stypendium}"></td>-->
-
 
                     <td sec:authorize="hasRole('ROLE_NAUCZYCIEL')">
                         <a class="btn btn-danger" th:href="@{wstawianieOceny.html(id=${u.id})}">Wstaw ocene</a>
+                    </td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="btn btn-danger" th:href="@{usunStudenta.html(id=${u.id})}">Usun</a>
                     </td>
                 </tr>
                 </tbody>
