@@ -39,8 +39,10 @@
             <td th:text="${kierunki.opis}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{akceptujKierunek.html(id=${kierunki.id})}">Akceptuj</a></td>
-
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="btn btn-success" th:href="@{akceptujKierunek.html(id=${kierunki.id})}">Akceptuj</a>
+                <a class="btn btn-danger" th:href="@{odrzucKierunek.html(id=${kierunki.id})}">Odrzuc</a>
+            </td>
         </tr>
 
         </tbody>
@@ -71,7 +73,10 @@
             <td th:text="${delK.opis}"></td>
             <td class="text-danger">Oczekuje akceptacji</td>
 
-            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{deleteKierunek.html(id=${delK.id})}">Akceptuj</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="btn btn-success" th:href="@{deleteKierunek.html(id=${delK.id})}">Akceptuj</a>
+                <a class="btn btn-danger" th:href="@{nieUsuwajKierunek.html(id=${delK.id})}">Odrzuc</a>
+            </td>
 
         </tr>
 

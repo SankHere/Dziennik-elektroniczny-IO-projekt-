@@ -57,10 +57,10 @@ public class UserRegistrationFormController {
         //userForm.setKierunki();
 
 
-        userForm.setKierunki(kierunkiRepository.findByName("Brak"));
-        userForm.setSpecjalnosci(specjalnosciRepository.findByName("Brak"));
-        userForm.setUbezpieczenie(ubezpieczenieRepository.findByName("Brak"));
-        userForm.setStypendia(stypendiaRepository.findByName("Brak"));
+        userForm.setKierunki(kierunkiRepository.findByName("Test"));
+        userForm.setSpecjalnosci(specjalnosciRepository.findByName("Test"));
+        userForm.setUbezpieczenie(ubezpieczenieRepository.findByName("Test"));
+        userForm.setStypendia(stypendiaRepository.findByName("Test"));
         userService.save(userForm);
         return "registrationSuccess";
     }

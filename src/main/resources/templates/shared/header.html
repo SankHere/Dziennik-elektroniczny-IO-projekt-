@@ -56,6 +56,9 @@
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link" th:classappend="${pageName eq 'adminAkceptujWnioski'}?'active'"  th:href="@{/adminAkceptujWnioski.html}">Akceptuj Wnioski</a>
             </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link" th:classappend="${pageName eq 'userList'}?'active'" th:href="@{/userList.html}">Usun uzytkownika</a>
+            </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_DZIEKANAT')">
                 <a class="nav-link" th:classappend="${pageName eq 'dziekanatAkceptujWnioski'}?'active'"  th:href="@{/dziekanatAkceptujWnioski.html}">Akceptuj Wnioski</a>
             </li>
