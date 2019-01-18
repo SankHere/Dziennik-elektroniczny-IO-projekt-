@@ -27,6 +27,8 @@ public class AdminAkceptujWnioskiController {
     private PrzedmiotRepository przedmiotRepository;
     @Autowired
     private OcenaRepository ocenaRepository;
+    @Autowired
+    private SpecjalnosciRepository specjalnosciRepository;
 
     @RequestMapping(value="/adminAkceptujWnioski.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showWnioskiList(Model model){
@@ -74,6 +76,7 @@ public class AdminAkceptujWnioskiController {
             List<User> user = userRepository.findByKierunki(kier);
 
             List<Przedmiot> prze = przedmiotRepository.findPrzedmiotByKierunki(kier);
+            List<Specjalnosci> spec = specjalnosciRepository.findSpecjalnosciByKierunki(kier);
 
             for(User u: user){
                 u.setKierunki(pusty);
@@ -82,6 +85,9 @@ public class AdminAkceptujWnioskiController {
             }
             for(Przedmiot p: prze){
                 p.setKierunki(pusty);
+            }
+            for(Specjalnosci s: spec){
+                s.setKierunki(pusty);
             }
 
             kierunkiRepository.delete(kier);
