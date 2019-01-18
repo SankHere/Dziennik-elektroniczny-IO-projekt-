@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 public class Stypendia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     //@Size(min = 2, max = 30)
@@ -30,7 +30,7 @@ public class Stypendia {
     @Max(1000000)
     private Double kwota;
 
-    public Stypendia(long id, String name, Double kwota) {
+    public Stypendia(Long id, String name, Double kwota) {
         this(name, kwota);
         this.id = id;
     }

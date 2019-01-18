@@ -13,6 +13,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -112,5 +113,6 @@ public class User {
         this.ubezpieczenie = ubezpieczenie;
         this.enabled = enabled;
     }
+
 
 }

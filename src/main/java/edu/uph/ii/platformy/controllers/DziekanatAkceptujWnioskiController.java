@@ -7,14 +7,11 @@ import edu.uph.ii.platformy.models.Podania.KierunekPodanie;
 import edu.uph.ii.platformy.models.Podania.PodanieSpecjalnosci;
 import edu.uph.ii.platformy.models.Podania.PodanieUbezpieczenie;
 import edu.uph.ii.platformy.models.Podania.PodanieUser;
+import edu.uph.ii.platformy.repositories.*;
 import edu.uph.ii.platformy.repositories.Podania.KierunekPodanieRepository;
 import edu.uph.ii.platformy.repositories.Podania.PodanieSpecjalnosciRepository;
 import edu.uph.ii.platformy.repositories.Podania.PodanieUbezpieczenieRepository;
 import edu.uph.ii.platformy.repositories.Podania.PodanieUserRepository;
-import edu.uph.ii.platformy.repositories.RoleRepository;
-import edu.uph.ii.platformy.repositories.SpecjalnosciRepository;
-import edu.uph.ii.platformy.repositories.UbezpieczenieRepository;
-import edu.uph.ii.platformy.repositories.UserRepository;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -58,6 +55,9 @@ public class DziekanatAkceptujWnioskiController {
     @Autowired
     private PodanieUserRepository podanieUserRepository;
 
+    @Autowired
+    private KierunkiRepository kierunkiRepository;
+
 
 
     //pokazywanie listy
@@ -84,14 +84,20 @@ public class DziekanatAkceptujWnioskiController {
 
 
             KierunekPodanie kierunekPodanie = kierunekPodanieRepository.findById(id).get();
+            Long b = kierunekPodanie.getIdKierunku(); //pobieranie id z modelu
             Long a = kierunekPodanie.getIdUser();
             if (a > 0) {
+                Optional<Kierunki> kier = kierunkiRepository.findById(b); //
                 Optional<User> opt = userRepository.findById(a);
                 if (opt.isPresent()) {
+
                     User user = opt.get();
                     Role role = roleRepository.findRoleByType(Role.Types.ROLE_STUDENT);
                     user.setRoles(new HashSet<>(Arrays.asList(role)));
 
+                    Kierunki kierunki = kier.get(); //pobieram kierunek
+                    user.setKierunki(kierunki); //i ustawiam nowy
+                    userRepository.save(user);
 
                 } else {
 

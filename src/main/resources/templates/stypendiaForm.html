@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+    <title>Rekrutacja na kierunek</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('stypendiaForm')"/>
+
+<div class="card-body container">
+
+    <!--<div th:each="zal : ${zalogowany}">-->
+    <!--<div th:text="${zal.name}"></div>-->
+    <!--</div>-->
+    <form th:method="POST" th:object="${stypendiumPodanie}", th:action="@{/stypendiaForm.html}">
+
+        <h1>Przyznawanie stypendium</h1>
+
+
+        <div class="form-group">
+
+            <input id="name" name="name" type="hidden" th:value="${zalogowany.name}"
+                   class="form-control" required="true" />
+
+        </div>
+
+        <div class="form-group">
+            <input id="surname" name="surname" type="hidden" th:value="${zalogowany.surname}"
+                   class="form-control" required="true" />
+        </div>
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">Nazwa wybranego stypendium:</label>
+            <input id="nazwaStypendium" name="nazwaStypendium" type="text" th:value="${stypendium.name}"
+                   class="form-control" required="true" />
+        </div>
+
+        <div class="form-group">
+            <label for="opis" class="bmd-label-floating">Opis</label>
+            <input id="opis" type="text" th:field="*{opis}"
+                   class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"
+                   required="true"/>
+        </div>
+
+
+
+        <div class="form-group">
+            <input id="idStypendium" name="idStypendium" type="hidden" th:value="${stypendium.id}"
+                   class="form-control" required="true" />
+        </div>
+
+
+
+        <div class="form-group">
+            <input id="idUsera" name="idUsera" type="hidden" th:value="${zalogowany.id}"
+                   class="form-control" required="true" />
+        </div>
+
+        <div class="form-group">
+
+            <input id="status" name="status" type="hidden" th:value="1"
+                   class="form-control" required="true" />
+
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Wyślij zgłoszenie"/>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <input type="hidden" th:field="*{id}"/>
+                <input
+                        type="hidden"
+                        th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}"/>
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

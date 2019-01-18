@@ -27,7 +27,9 @@
 
         <td th:text="${s.name}"></td>
         <td th:text="${s.kwota}"></td>
-        <td>Złóż podanie</td>
+
+        <td sec:authorize="hasRole('ROLE_STUDENT')"><a th:href="@{stypendiaForm.html(id=${s.id})}">Złóż podanie o stypendium</a></td>
+        <!--<td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{usunKierunek.html(id=${kierunki.id})}">Usuń</a></td>-->
 
     </tr>
 

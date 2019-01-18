@@ -38,7 +38,7 @@ public class KierunekPodanie {
 
 
     private String nazwaKierunku;
-    private int idKierunku;
+    private Long idKierunku;
     private Long idUser;
 
 //    @Valid
@@ -63,12 +63,12 @@ public class KierunekPodanie {
 
     }
 
-    public KierunekPodanie(Long id, String name, String surname, int avg ,String schoolName, int status , Date createdDate, int idKierunku, String nazwaKierunku,Long idUser) {
+    public KierunekPodanie(Long id, String name, String surname, int avg ,String schoolName, int status , Date createdDate, Long idKierunku, String nazwaKierunku,Long idUser) {
         this(name,surname,avg,schoolName,status,createdDate,idKierunku,nazwaKierunku,idUser);
         this.id = id;
     }
 
-    public KierunekPodanie(String name,String surname, int avg,String schoolName, int status, Date createdDate, int idKierunku, String nazwaKierunku,Long idUser) {
+    public KierunekPodanie(String name,String surname, int avg,String schoolName, int status, Date createdDate, Long idKierunku, String nazwaKierunku,Long idUser) {
         this.name = name;
         this.schoolName=schoolName;
         this.avg=avg;
