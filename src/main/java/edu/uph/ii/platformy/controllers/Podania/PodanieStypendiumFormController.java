@@ -15,11 +15,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.jws.WebParam;
+import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class PodanieStypendiumFormController {
@@ -48,7 +51,6 @@ public class PodanieStypendiumFormController {
         model.addAttribute("stypendium",stypendiaRepository.findById(id).get());
         model.addAttribute("zalogowany",zalogowany);
         model.addAttribute("zzz", id);
-//        model.addAttribute("stypendium", stypendiaRepository.findById(id));
 
         if(id != null) {
             model.addAttribute(new StypendiumPodanie());
@@ -57,4 +59,19 @@ public class PodanieStypendiumFormController {
 
         return "stypendiaForm";
     }
+
+    @Secured("ROLE_STUDENT")
+    @RequestMapping(value="/stypendiaForm.html", method= RequestMethod.POST)
+    //@ResponseStatus(HttpStatus.CREATED)
+    public String processForm(@Valid @ModelAttribute("stypendiumPodanie") StypendiumPodanie stypendiumPodanie){
+
+
+        stypendiumPodanie.setStatus(1);
+        stypendiumPodanie.setCreatedDate(new Date());
+        stypendiumPodanieRepository.saveAndFlush(stypendiumPodanie);
+
+
+        return "redirect:stypendiaList.html";//po udanym dodaniu/edycji przekierowujemy na listę
+    }
+
 }

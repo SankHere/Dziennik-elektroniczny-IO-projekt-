@@ -117,6 +117,42 @@
 
         </tr>
 
+        <H3>Stypendia</H3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nazwa stypendia</th>
+                <th>Kwota</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Średnia studenta</th>
+                <td>Powód ubiegania się o stypendium</td>
+                <th>Data Utworzenia</th>
+
+                <th>Status</th>
+                <th sec:authorize="hasRole('ROLE_DZIEKANAT')">Opcje</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each=" st: ${stypendiumPodanie}">
+                <td th:text="${st.id}"></td>
+                <th th:text="${st.stypendia.name}"></th>
+                <th th:text="${st.stypendia.getKwota()}"></th>
+                <td th:text="${st.name}"></td>
+                <td th:text="${st.surname}"></td>
+                <td th:text="${st.avg}"></td>
+                <th th:text="${st.opis}"></th>
+                <td th:text="${#dates.format(st.createdDate, 'dd-MM-yyyy')}"></td>
+                <td th:text="${st.status}"></td>
+
+                <td class="text-danger">Oczekuje akceptacji</td>
+
+                <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujStypendium.html(id=${stypendiumPodanie.id})}">Akceptuj</a></td>
+
+            </tr>
+
         </tbody>
     </table><br>
 
