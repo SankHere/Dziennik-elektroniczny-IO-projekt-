@@ -3,15 +3,9 @@ package edu.uph.ii.platformy.controllers;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import edu.uph.ii.platformy.models.*;
-import edu.uph.ii.platformy.models.Podania.KierunekPodanie;
-import edu.uph.ii.platformy.models.Podania.PodanieSpecjalnosci;
-import edu.uph.ii.platformy.models.Podania.PodanieUbezpieczenie;
-import edu.uph.ii.platformy.models.Podania.PodanieUser;
+import edu.uph.ii.platformy.models.Podania.*;
 import edu.uph.ii.platformy.repositories.*;
-import edu.uph.ii.platformy.repositories.Podania.KierunekPodanieRepository;
-import edu.uph.ii.platformy.repositories.Podania.PodanieSpecjalnosciRepository;
-import edu.uph.ii.platformy.repositories.Podania.PodanieUbezpieczenieRepository;
-import edu.uph.ii.platformy.repositories.Podania.PodanieUserRepository;
+import edu.uph.ii.platformy.repositories.Podania.*;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -58,6 +52,13 @@ public class DziekanatAkceptujWnioskiController {
     @Autowired
     private KierunkiRepository kierunkiRepository;
 
+    @Autowired
+    private StypendiumPodanieRepository stypendiumPodanieRepository;
+
+    @Autowired
+    private StypendiaRepository stypendiaRepository;
+
+
 
 
     //pokazywanie listy
@@ -68,11 +69,13 @@ public class DziekanatAkceptujWnioskiController {
         List<PodanieSpecjalnosci> podanieSpecjalnoscis = podanieSpecjalnosciRepository.findByStatus(1);
         List<PodanieUbezpieczenie> podanieUbezpieczenies = podanieUbezpieczenieRepository.findByStatus(1);
         List<PodanieUser> podanieUser = podanieUserRepository.findByStatus(1);
+        List<StypendiumPodanie> stypendiumPodanie = stypendiumPodanieRepository.findStypendiumPodanieByStatus(1);
 
         model.addAttribute("podanieUser",podanieUser);
         model.addAttribute("podanieUbezpieczenie",podanieUbezpieczenies);
         model.addAttribute("podanieSpecjalnosci",podanieSpecjalnoscis);
         model.addAttribute("kierunekpodanie",kierunekPodanie);
+        model.addAttribute("stypendiumPodanie",stypendiumPodanie);
         return "dziekanatAkceptujWnioski";
     }
 
@@ -107,6 +110,7 @@ public class DziekanatAkceptujWnioskiController {
             model.addAttribute("user", userRepository);
             model.addAttribute("kierunekpodanie", kierunekPodanie);
             kierunekPodanie.setStatus(2);
+            kierunekPodanieRepository.delete(kierunekPodanie);
 
             //kierunekPodanieRepository.deleteById(id);
             return "redirect:dziekanatAkceptujWnioski.html";
@@ -116,16 +120,75 @@ public class DziekanatAkceptujWnioskiController {
             List<PodanieSpecjalnosci> podanieSpecjalnoscis = podanieSpecjalnosciRepository.findByStatus(1);
             List<PodanieUbezpieczenie> podanieUbezpieczenies = podanieUbezpieczenieRepository.findByStatus(1);
             List<PodanieUser> podanieUser = podanieUserRepository.findByStatus(1);
+            List<StypendiumPodanie> stypendiumPodanie = stypendiumPodanieRepository.findStypendiumPodanieByStatus(1);
 
             model.addAttribute("podanieUser",podanieUser);
             model.addAttribute("podanieUbezpieczenie",podanieUbezpieczenies);
             model.addAttribute("podanieSpecjalnosci",podanieSpecjalnoscis);
             model.addAttribute("kierunekpodanie",kierunekPodanie);
-
+            model.addAttribute("stypendiumPodanie",stypendiumPodanie);
 
             return "redirect:dziekanatAkceptujWnioski.html";
         }
     }
+
+    @RequestMapping(value = "/akceptujStypendia.html", method = RequestMethod.GET )
+    public String akceptujStypendia(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+
+        if(id>0) {
+
+
+            StypendiumPodanie stypendiumPodanie = stypendiumPodanieRepository.findById(id).get(); //id podania
+            Long test2 = stypendiumPodanie.getId(); //pobieranie id z modelu
+            Long a = stypendiumPodanie.getIdUser(); //pobieranie uzytkownika z jego id z podania
+
+            if (a > 0) {
+                Optional<User> opt = userRepository.findById(a); //znalezienie takiego uzytkownika
+                Optional<Stypendia> st = stypendiaRepository.findById(test2); //znalezienie takiego stypendium o id z podania
+                if (opt.isPresent() && st.isPresent()) { //sprawdzanie czy istnieja w bazie
+                    User user = opt.get(); //pobranie obiektu user
+
+
+                    Stypendia stypendia = st.get(); //pobieram obiekt stypendia
+                    user.setStypendia(stypendia); //ustawiam nowy
+
+                    userRepository.save(user);//zapisuje
+
+                } else {
+
+                    return "dziekanatAkceptujWnioski.html";
+                }
+
+            }
+            model.addAttribute("user", userRepository);
+            stypendiumPodanie.setStatus(2);
+            stypendiumPodanieRepository.save(stypendiumPodanie);
+            stypendiumPodanieRepository.delete(stypendiumPodanie);
+            //podanieSpecjalnosciRepository.deleteById(id);
+            return "redirect:dziekanatAkceptujWnioski.html";
+
+        }else {
+            List<KierunekPodanie> kierunekPodanie = kierunekPodanieRepository.findKierunekPodanieByStatus(1);
+            List<PodanieSpecjalnosci> podanieSpecjalnoscis = podanieSpecjalnosciRepository.findByStatus(1);
+            List<PodanieUbezpieczenie> podanieUbezpieczenies = podanieUbezpieczenieRepository.findByStatus(1);
+            List<PodanieUser> podanieUser = podanieUserRepository.findByStatus(1);
+            List<StypendiumPodanie> stypendiumPodanie = stypendiumPodanieRepository.findStypendiumPodanieByStatus(1);
+
+
+            model.addAttribute("podanieUser",podanieUser);
+            model.addAttribute("podanieUbezpieczenie",podanieUbezpieczenies);
+            model.addAttribute("podanieSpecjalnosci",podanieSpecjalnoscis);
+            model.addAttribute("kierunekpodanie",kierunekPodanie);
+            model.addAttribute("stypendiumPodanie",stypendiumPodanie);
+
+            return "redirect:dziekanatAkceptujWnioski.html";
+        }
+    }
+
+
+
+
+
 
     //akceptowanie wniosków
     @RequestMapping(value = "/odrzucRekrutacja.html", method = RequestMethod.GET )
@@ -175,12 +238,13 @@ public class DziekanatAkceptujWnioskiController {
             List<PodanieSpecjalnosci> podanieSpecjalnoscis = podanieSpecjalnosciRepository.findByStatus(1);
             List<PodanieUbezpieczenie> podanieUbezpieczenies = podanieUbezpieczenieRepository.findByStatus(1);
             List<PodanieUser> podanieUser = podanieUserRepository.findByStatus(1);
+            List<StypendiumPodanie> stypendiumPodanie = stypendiumPodanieRepository.findStypendiumPodanieByStatus(1);
 
             model.addAttribute("podanieUser",podanieUser);
             model.addAttribute("podanieUbezpieczenie",podanieUbezpieczenies);
             model.addAttribute("podanieSpecjalnosci",podanieSpecjalnoscis);
             model.addAttribute("kierunekpodanie",kierunekPodanie);
-
+            model.addAttribute("stypendiumPodanie",stypendiumPodanie);
             return "redirect:dziekanatAkceptujWnioski.html";
         }
     }
@@ -231,12 +295,13 @@ public class DziekanatAkceptujWnioskiController {
             List<PodanieSpecjalnosci> podanieSpecjalnoscis = podanieSpecjalnosciRepository.findByStatus(1);
             List<PodanieUbezpieczenie> podanieUbezpieczenies = podanieUbezpieczenieRepository.findByStatus(1);
             List<PodanieUser> podanieUser = podanieUserRepository.findByStatus(1);
+            List<StypendiumPodanie> stypendiumPodanie = stypendiumPodanieRepository.findStypendiumPodanieByStatus(1);
 
             model.addAttribute("podanieUser",podanieUser);
             model.addAttribute("podanieUbezpieczenie",podanieUbezpieczenies);
             model.addAttribute("podanieSpecjalnosci",podanieSpecjalnoscis);
             model.addAttribute("kierunekpodanie",kierunekPodanie);
-
+            model.addAttribute("stypendiumPodanie",stypendiumPodanie);
             return "redirect:dziekanatAkceptujWnioski.html";
         }
     }
@@ -280,12 +345,13 @@ if(id>1){
             List<PodanieSpecjalnosci> podanieSpecjalnoscis = podanieSpecjalnosciRepository.findByStatus(1);
             List<PodanieUbezpieczenie> podanieUbezpieczenies = podanieUbezpieczenieRepository.findByStatus(1);
             List<PodanieUser> podanieUser = podanieUserRepository.findByStatus(1);
+    List<StypendiumPodanie> stypendiumPodanie = stypendiumPodanieRepository.findStypendiumPodanieByStatus(1);
 
             model.addAttribute("podanieUser",podanieUser);
             model.addAttribute("podanieUbezpieczenie",podanieUbezpieczenies);
             model.addAttribute("podanieSpecjalnosci",podanieSpecjalnoscis);
             model.addAttribute("kierunekpodanie",kierunekPodanie);
-
+    model.addAttribute("stypendiumPodanie",stypendiumPodanie);
             return "redirect:dziekanatAkceptujWnioski.html";
         }
     }
