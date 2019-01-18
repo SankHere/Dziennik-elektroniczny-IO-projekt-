@@ -54,12 +54,15 @@ public class AdminAkceptujWnioskiController {
 
         kier.setStatus(2);
         kierunkiRepository.save(kier);
-//        // Do dodania kierunku
-//        List<Kierunki> kierunki = kierunkiRepository.findAllKierunkiUsingStatus(1);
-//        model.addAttribute("kierunki", kierunki);
-//        //  Do usuniecia kierunku
-//        List<Kierunki> deletekierunki = kierunkiRepository.findAllKierunkiUsingStatus(3);
-//        model.addAttribute("deleteKierunki", deletekierunki);
+        return  "redirect:adminAkceptujWnioski.html";
+    }
+
+    @RequestMapping(value="/odrzucKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
+    public String odrzucKierunek(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+
+        Kierunki kier = kierunkiRepository.findById(id).get();
+
+        kierunkiRepository.delete(kier);
         return  "redirect:adminAkceptujWnioski.html";
     }
 
@@ -89,12 +92,14 @@ public class AdminAkceptujWnioskiController {
             kierunkiRepository.delete(kier);
         }
 
-//        // Do dodania kierunku
-//        List<Kierunki> kierunki = kierunkiRepository.findAllKierunkiUsingStatus(1);
-//        model.addAttribute("kierunki", kierunki);
-//        //  Do usuniecia kierunku
-//        List<Kierunki> deletekierunki = kierunkiRepository.findAllKierunkiUsingStatus(3);
-//        model.addAttribute("deleteKierunki", deletekierunki);
+        return  "redirect:adminAkceptujWnioski.html";
+    }
+    @RequestMapping(value="/nieUsuwajKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
+    public String nieUsuwajKierunek(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+
+        Kierunki kier = kierunkiRepository.findById(id).get();
+        kier.setStatus(2);
+        kierunkiRepository.save(kier);
         return  "redirect:adminAkceptujWnioski.html";
     }
 }

@@ -63,7 +63,7 @@ public class RepositoriesInitializer {
                     Kierunki ki3 = new Kierunki("Chemia", 50, new Date(2006, 6, 16, 17, 33, 44), "opis do chemii", 2);
                     kierunkiRepository.save(ki3);
                     //nauczyciel nie powinien miec zadnego przedmiotu to bedzie tutaj nalezec
-                    Kierunki ki4 = new Kierunki("Test", 1, new Date(01-01-2000), "jakis opis", 2);
+                    Kierunki ki4 = new Kierunki("Test", 1, new Date(1999, 6, 16, 17, 33, 44), "jakis opis", 2);
                     kierunkiRepository.save(ki4);
 
 
