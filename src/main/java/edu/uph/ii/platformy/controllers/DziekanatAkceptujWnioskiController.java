@@ -10,6 +10,7 @@ import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,8 @@ public class DziekanatAkceptujWnioskiController {
     @Autowired
     private StypendiaRepository stypendiaRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
 
@@ -112,7 +115,9 @@ public class DziekanatAkceptujWnioskiController {
             kierunekPodanie.setStatus(2);
             kierunekPodanieRepository.delete(kierunekPodanie);
 
-            //kierunekPodanieRepository.deleteById(id);
+
+//            kierunekPodanieRepository.deleteById(id);
+//            //kierunekPodanieRepository.deleteById(id);
             return "redirect:dziekanatAkceptujWnioski.html";
 
         }else {
@@ -315,13 +320,23 @@ public class DziekanatAkceptujWnioskiController {
     public String akceptujUser(Model model, @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
 
-if(id>1){
+if(id>=1){
 
         PodanieUser podanieUser = podanieUserRepository.findById(id).get(); //id podania
               Long a = podanieUser.getIdUsera(); //
 
+        String haslo = podanieUser.getPassword();
+
+
+        String pass = passwordEncoder.encode(haslo);
+        //
+//        podanieUser.setPassword(pass);
+//        podanieUserRepository.save(podanieUser);
+//
                   Optional<User> opt = userRepository.findById(a); //
                     User user = opt.get(); //
+
+
 
             String name = podanieUser.getName();
             String surname = podanieUser.getSurname();
@@ -331,7 +346,9 @@ if(id>1){
                     user.setName(name);
                     user.setSurname(surname);
                     user.setEmail(email);
+                    user.setPassword(pass);
                     userRepository.save(user);
+
 
 
             podanieUser.setStatus(2);
@@ -367,9 +384,8 @@ if(id>1){
             PodanieSpecjalnosci podanieSpecjalnosci = podanieSpecjalnosciRepository.findById(id).get(); //id podania
 
 
-            podanieSpecjalnosci.setStatus(3);
-            podanieSpecjalnosciRepository.save(podanieSpecjalnosci);
-            //podanieSpecjalnosciRepository.deleteById(id);
+            podanieSpecjalnosciRepository.delete(podanieSpecjalnosci);
+
             return "redirect:dziekanatAkceptujWnioski.html";
 
         }else {
@@ -389,8 +405,8 @@ if(id>1){
             PodanieUbezpieczenie podanieUbezpieczenie = podanieUbezpieczenieRepository.findById(id).get(); //id podania
 
 
-            podanieUbezpieczenie.setStatus(3);
-            podanieUbezpieczenieRepository.save(podanieUbezpieczenie);
+            podanieUbezpieczenieRepository.delete(podanieUbezpieczenie);
+
             return "redirect:dziekanatAkceptujWnioski.html";
 
         }else {
@@ -408,8 +424,7 @@ if(id>1){
             PodanieUser podanieUser = podanieUserRepository.findById(id).get(); //id podania
 
 
-            podanieUser.setStatus(3);
-            podanieUserRepository.save(podanieUser);
+            podanieUserRepository.delete(podanieUser);
             return "redirect:dziekanatAkceptujWnioski.html";
 
         }else {

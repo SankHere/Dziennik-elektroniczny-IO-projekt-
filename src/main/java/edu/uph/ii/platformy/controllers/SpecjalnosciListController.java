@@ -48,14 +48,30 @@ public class SpecjalnosciListController {
         Specjalnosci specjalnosci = zalogowany.getSpecjalnosci();
 
         if(specjalnosci.getId()==4){
+
+
             model.addAttribute("specjalnosci", specjalnosciRepository.findAll());
+
+            Specjalnosci specjalnosc = zalogowany.getSpecjalnosci();
+            String specja = specjalnosc.getName();
+
+            model.addAttribute("twoje", specja);
+            model.addAttribute("specjalnosci", specjalnosciRepository.findAll());
+            model.addAttribute("test", 2);
             return "specjalnosciList";
         }
 
 
 
         else {
-            return "redirect:";
+
+            Specjalnosci specjalnosc = zalogowany.getSpecjalnosci();
+            String specja = specjalnosc.getName();
+
+            model.addAttribute("twoje", specja);
+            model.addAttribute("specjalnosci", specjalnosciRepository.findAll());
+            model.addAttribute("test", 1);
+            return "specjalnosciList";
         }
 
     }

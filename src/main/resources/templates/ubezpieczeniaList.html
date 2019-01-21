@@ -6,14 +6,14 @@
     <title>Strona domowa</title>
 </head>
 <body class="card">
-<div th:replace="shared/header :: header('stypendiaList')"/>
+<div th:replace="shared/header :: header('ubezpieczeniaList')"/>
 
 
 <div id="main" class="card-body">
 
-
-    <H1>LISTA STYPENDIÓW</H1>
-    <table class="table table-striped">
+    <span th:if="${test}==2"> <H1>LISTA UBEZPIECZEŃ</H1></span>
+    <span th:if="${test}==1"><H1>Twoje ubezpieczenie to: </H1> <H1 th:text="${twoje}"></H1> <H2 th:text="${cena}"></H2></span>
+    <br><table class="table table-striped">
         <thead>
         <tr>
             <th>Nazwa</th>
@@ -27,8 +27,8 @@
 
             <td th:text="${u.name}"></td>
             <td th:text="${u.price}"></td>
-            <td><a class="btn btn-success" th:href="@{podanieUbezpieczenieForm.html(id=${u.id})}">Zapisz</a>
-            </td>
+            <td th:if="${test}==2"><a th:if="${u.id}!=4" class="btn btn-success" th:href="@{podanieUbezpieczenieForm.html(id=${u.id})}">Zapisz</a></td>
+
 
 
 

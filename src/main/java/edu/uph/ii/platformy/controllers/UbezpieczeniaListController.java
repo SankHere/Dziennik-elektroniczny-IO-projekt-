@@ -36,13 +36,34 @@ public class UbezpieczeniaListController {
         User zalogowany = userRepository.findByUsername(currentPrincipalName);
         model.addAttribute("zalogowany", zalogowany);
 
+
         Ubezpieczenie ubezpieczenie = zalogowany.getUbezpieczenie();
 
+        model.addAttribute("twoje", ubezpieczenie.getName());
+        model.addAttribute("cena",ubezpieczenie.getPrice());
+
         if (ubezpieczenie.getId() == 4) {
+
+
+            Ubezpieczenie ubezpieczeni = zalogowany.getUbezpieczenie();
+            //String u = ubezpieczenie.getName();
+
+            //model.addAttribute("twoje", u);
             model.addAttribute("ubezpieczenia", ubezpieczenieRepository.findAll());
+            model.addAttribute("test", 2);
+
+
+
             return "ubezpieczeniaList";
         } else {
-            return "redirect:";
+            model.addAttribute("test", 1);
+
+//            model.addAttribute("twoje", ubezpieczenie.getName());
+            model.addAttribute("cena",ubezpieczenie.getPrice());
+
+
+            model.addAttribute("ubezpieczenia", ubezpieczenieRepository.findAll());
+            return "ubezpieczeniaList";
         }
 
 

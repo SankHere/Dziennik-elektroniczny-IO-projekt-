@@ -38,6 +38,9 @@
                 <a class="nav-link" th:classappend="${pageName eq 'stypendiaList'}?'active'"  th:href="@{/stypendiaList.html}">Stypendia</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
+                <a class="nav-link" th:classappend="${pageName eq 'specjalnosciList'}?'active'"  th:href="@{/specjalnosciList.html}">Specjalności</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
                 <a class="nav-link" th:classappend="${pageName eq 'ubezpieczeniaList'}?'active'"  th:href="@{/ubezpieczeniaList.html}">Ubezpieczenia</a>
             </li>
             <li class="nav-item" sec:authorize="isAuthenticated()">

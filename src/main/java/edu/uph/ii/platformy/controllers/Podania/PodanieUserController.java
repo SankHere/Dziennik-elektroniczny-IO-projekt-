@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +40,9 @@ public class PodanieUserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
 
@@ -80,7 +84,12 @@ public class PodanieUserController {
         model.addAttribute("user", userRepository.findById(id).get());
 
 
+
+
+
+
         model.addAttribute("podanieUser", new PodanieUser());
+
 
         return "podanieUserForm";
     }
@@ -96,10 +105,24 @@ public class PodanieUserController {
             return "podanieUserForm";
         }
 
+
+
+
+
+
         a.setCreatedDate(new Date());
 
-        podanieUserRepository.saveAndFlush(a);
+//        String haslo = a.getPassword();
+//        a.setPassword(new String(passwordEncoder.encode(haslo)));
 
+
+
+        podanieUserRepository.save(a);
+
+
+
+
+        //
 
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
@@ -107,7 +130,7 @@ public class PodanieUserController {
         model.addAttribute("zalogowany", zalogowany);
 
             model.addAttribute("user", userRepository.findAll());
-            return "redirect:podanieUserForm.html";
+            return "redirect:";
 
 
 

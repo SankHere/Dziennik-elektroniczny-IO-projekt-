@@ -14,9 +14,14 @@
 <div id="main" class="card-body">
 
 
-    <H1>LISTA SPECJALNOŚCI</H1>
+    <span th:if="${test}==2"> <H1>LISTA SPECJALNOŚCI</H1></span>
 
-        <table class="table table-striped">
+
+    <span th:if="${test}==1"><H1>Twoja specjalność to: </H1> <H1 th:text="${twoje}"></H1><br/></span>
+
+
+
+    <br>        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nazwa</th>
@@ -29,8 +34,9 @@
 <tr th:each="nazwa: ${specjalnosci}">
 
                 <td th:text="${nazwa.name}"></td>
-                <td><a class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${nazwa.id})}">Zapisz</a>
+    <span th:if="${test}==2">            <td><a th:if="${nazwa.id}!=4" class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${nazwa.id})}">Zapisz</a></span>
                 </td>
+
 
 
 
@@ -38,6 +44,8 @@
 
             </tbody>
         </table>
+
+
 
 
     </div>

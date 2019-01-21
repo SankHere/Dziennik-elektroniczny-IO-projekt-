@@ -35,6 +35,8 @@ public class PodanieUser {
     @Length(min = 2, max = 30)
     private String email;
 
+    private String password;
+
     @Column(name="created_date")
     private Date createdDate;
 
@@ -43,15 +45,16 @@ public class PodanieUser {
     private int status;
 
 
-    public PodanieUser(Long id, String name, String surname, String email, Date createdDate, Long idUsera, int status){
-        this(name, surname, email, createdDate, idUsera, status);
+    public PodanieUser(Long id, String name, String surname, String email, String password, Date createdDate, Long idUsera, int status){
+        this(name, surname, email, password, createdDate, idUsera, status);
         this.id=id;
     }
 
-    public PodanieUser(String name, String surname, String email, Date createdDate, Long idUsera, int status){
+    public PodanieUser(String name, String surname, String email, String password, Date createdDate, Long idUsera, int status){
         this.name=name;
         this.surname=surname;
         this.email=email;
+        this.password=password;
         this.createdDate=createdDate;
         this.idUsera=idUsera;
         this.status=status;
