@@ -25,11 +25,13 @@
         <tbody>
         <tr th:each="u : ${ubezpieczenia}">
 
+            <div th:if="${u.id}!=4">
+
             <td th:text="${u.name}"></td>
             <td th:text="${u.price}"></td>
             <td th:if="${test}==2"><a th:if="${u.id}!=4" class="btn btn-success" th:href="@{podanieUbezpieczenieForm.html(id=${u.id})}">Zapisz</a></td>
 
-
+            </div>
 
 
         </tr>

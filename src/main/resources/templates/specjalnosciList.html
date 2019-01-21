@@ -33,11 +33,13 @@
 
 <tr th:each="nazwa: ${specjalnosci}">
 
+    <div th:if="${nazwa.id}!=4">
+
                 <td th:text="${nazwa.name}"></td>
-    <span th:if="${test}==2">            <td><a th:if="${nazwa.id}!=4" class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${nazwa.id})}">Zapisz</a></span>
+    <span th:if="${test}==2">            <td><a class="btn btn-success" th:href="@{podanieSpecjalnosciForm.html(id=${nazwa.id})}">Zapisz</a></span>
                 </td>
 
-
+    </div>
 
 
             </tr>
