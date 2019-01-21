@@ -10,9 +10,7 @@
 <body class="card">
 <div th:replace="shared/header :: header('dziekanatAkceptujWnioski')"/>
 
-
 <div id="main" class="card-body">
-
 
     <H1>LISTA WNIOSKOW</H1>
     <H3>Rekrutacje na kierunki</H3>
@@ -53,9 +51,7 @@
         </tbody>
     </table><br>
     <br><br>
-
-
-
+\
     <H3>Rekrutacje na Specjalności</H3>
     <table class="table table-striped">
         <thead>
@@ -88,9 +84,6 @@
         </tbody>
     </table><br>
 
-
-
-
     <H3>Ubezpieczenia</H3>
     <table class="table table-striped">
         <thead>
@@ -121,8 +114,6 @@
                 <a th:href="@{odrzucUbezpieczenie.html(id=${podanieUbezpieczenie.id})}">Odrzuć</a></td>
 
         </tr>
-
-
 
         </tbody>
     </table><br>
@@ -196,21 +187,6 @@
 
         </tbody>
     </table><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <hr>
 </div>
 <div th:replace="shared/footer :: footer"></div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+    <title>Nowy egzamin</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('nowyEgzamin')"/>
+
+<div class="card-body container">
+    <form th:method="POST" th:object="${nowyEgzamin}" th:action="@{/nowyEgzamin.html}">
+        <fieldset>
+            <th:block th:each="e : ${#fields.detailedErrors()}">
+                <div class="alert alert-danger">
+                    <span th:text="${e.global}? '*' : ${e.fieldName}">field</span>
+                    <span th:text="${e.message}">text</span>
+                </div>
+            </th:block>
+
+
+            <div class="form-group">
+                <label for="name" class="bmd-label-floating">Nazwa egzaminu:</label>
+                <input id="name" type="text" name="name"
+                       class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid'"
+                       required="true"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('name')}">
+                    <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dataEgzaminu" class="bmd-label-floating">Data egzmaminu:</label>
+                <input id="dataEgzaminu" type="date" name="dataEgzaminu"
+                          class="form-control" th:classappend="${#fields.hasErrors('dataEgzaminu')}?'is-invalid'"
+                          required="true"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('dataEgzaminu')}">
+                    <p th:each="err : ${#fields.errors('dataEgzaminu')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="bmd-label-floating">Przedmiot:</label>
+                <select th:field="*{przedmiot.id}" class="form-control"
+                        th:classappend="${#fields.hasErrors('przedmiot')}?'is-invalid'">
+                    <option value="-1">--wybierz przedmiot--</option>
+                    <option th:each="prz : ${przedmioty}"
+                            th:value="${prz.id}"
+                            th:text=" ${prz.name}"
+                    />
+                </select>
+                <div class="error text-danger" th:if="${#fields.hasErrors('przedmiot.id')}">
+                    <p th:each="err : ${#fields.errors('przedmiot.id')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-raised">Zapisz</button>
+        </fieldset>
+    </form>
+</div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

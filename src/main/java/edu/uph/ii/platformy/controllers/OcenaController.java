@@ -70,15 +70,6 @@ public class OcenaController {
     @PostMapping(value = "/wstawianieOceny.html")
     public String zapiszOcene(Model model, @Valid @ModelAttribute("oceny") Ocena oceny, BindingResult bindingResult){
 
-//        if(bindingResult.hasErrors()) {
-//            Role r = roleRepository.findRoleByType(Role.Types.ROLE_STUDENT);
-////
-//            List<User> user = userRepository.findByRoles(r);
-//
-//            model.addAttribute("user", user);
-//        //    ocenaRepository.save(ocena);
-//            return  "userList";
-//        }
         ocenaRepository.save(oceny);
 
         Role r = roleRepository.findRoleByType(Role.Types.ROLE_STUDENT);
