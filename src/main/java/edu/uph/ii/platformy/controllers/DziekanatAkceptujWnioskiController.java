@@ -152,8 +152,6 @@ public class DziekanatAkceptujWnioskiController {
                 Optional<Stypendia> st = stypendiaRepository.findById(test2); //znalezienie takiego stypendium o id z podania
                 if (opt.isPresent() && st.isPresent()) { //sprawdzanie czy istnieja w bazie
                     User user = opt.get(); //pobranie obiektu user
-
-
                     Stypendia stypendia = st.get(); //pobieram obiekt stypendia
                     user.setStypendia(stypendia); //ustawiam nowy
 
@@ -188,6 +186,15 @@ public class DziekanatAkceptujWnioskiController {
 
             return "redirect:dziekanatAkceptujWnioski.html";
         }
+    }
+
+    @RequestMapping(value = "/odrzucStypendia.html", method = RequestMethod.GET )
+    public String odrzucStypendia(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+
+        StypendiumPodanie stypendiumPodanie = stypendiumPodanieRepository.findById(id).get();
+        stypendiumPodanieRepository.delete(stypendiumPodanie);
+
+        return "redirect:dziekanatAkceptujWnioski.html";
     }
 
 

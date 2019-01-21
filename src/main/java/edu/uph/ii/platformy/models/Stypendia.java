@@ -40,4 +40,6 @@ public class Stypendia {
         this.name = name;
         this.kwota = kwota;
     }
+
+
 }

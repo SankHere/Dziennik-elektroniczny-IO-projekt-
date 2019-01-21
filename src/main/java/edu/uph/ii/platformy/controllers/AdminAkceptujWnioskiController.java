@@ -1,14 +1,17 @@
 package edu.uph.ii.platformy.controllers;
 
+import edu.uph.ii.platformy.exceptions.KierunkiNotFoundException;
+import edu.uph.ii.platformy.exceptions.StypendiaNotFoundException;
 import edu.uph.ii.platformy.models.*;
 import edu.uph.ii.platformy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.jws.soap.SOAPBinding;
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +32,8 @@ public class AdminAkceptujWnioskiController {
     private OcenaRepository ocenaRepository;
     @Autowired
     private SpecjalnosciRepository specjalnosciRepository;
+    @Autowired
+    private StypendiaRepository stypendiaRepository;
 
     @RequestMapping(value="/adminAkceptujWnioski.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showWnioskiList(Model model){
@@ -57,11 +62,11 @@ public class AdminAkceptujWnioskiController {
     @RequestMapping(value="/odrzucKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String odrzucKierunek(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
-        Kierunki kier = kierunkiRepository.findById(id).get();
+    Kierunki kier = kierunkiRepository.findById(id).get();
 
         kierunkiRepository.delete(kier);
         return  "redirect:adminAkceptujWnioski.html";
-    }
+}
 
 
 
@@ -118,5 +123,24 @@ public class AdminAkceptujWnioskiController {
 
         return  "redirect:userList.html";
     }
+
+    @RequestMapping(value="/usunStypendia.html",method = RequestMethod.GET)
+    public String showForm(Model model, @RequestParam("id") Long id) {
+
+        Stypendia stypendia = stypendiaRepository.findById(id).get();
+
+        List<User> user = userRepository.findByStypendia(stypendia);
+
+//        for(User u: user){
+//        userRepository.findByStypendia(stypendia.setId(4));
+//        }
+//        stypendiaRepository.deleteById(id);
+
+
+        model.addAttribute("stypendia", stypendia);
+        return "stypendiaList";
+    }
+
+
 }
 

@@ -137,7 +137,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each=" st: ${stypendiumPodanie}">
+        <tr th:each="st: ${stypendiumPodanie}">
             <td th:text="${st.id}"></td>
             <td th:text="${st.nazwaStypendium}"></td>
             <td th:text="${st.idUser}"></td>
@@ -151,8 +151,9 @@
             <td class="text-danger">Oczekuje akceptacji</td>
 
             <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{akceptujStypendia.html(id=${st.id})}">Akceptuj</a></td>
-
+            <td sec:authorize="hasRole('ROLE_DZIEKANAT')"><a th:href="@{odrzucStypendia.html(id=${st.id})}">Odrzuc</a></td>
         </tr>
+
         </tbody>
     </table>
 
