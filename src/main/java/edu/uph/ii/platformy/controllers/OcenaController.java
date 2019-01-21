@@ -26,8 +26,8 @@ public class OcenaController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private KierunkiRepository kierunkiRepository;
+//    @Autowired
+//    private KierunkiRepository kierunkiRepository;
 
     @Autowired
     private PrzedmiotRepository przedmiotRepository;
@@ -39,7 +39,7 @@ public class OcenaController {
     private RoleRepository roleRepository;
 
     @RequestMapping(value="/wstawianieOceny.html", method= RequestMethod.GET)
-    public String showForm(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+    public String showWstawianieOceny(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
         if(id > 0){
             User user = userRepository.findById(id).get();

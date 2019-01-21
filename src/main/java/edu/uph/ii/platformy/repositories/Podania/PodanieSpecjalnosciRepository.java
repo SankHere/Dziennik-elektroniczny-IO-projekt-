@@ -16,19 +16,6 @@ public interface PodanieSpecjalnosciRepository extends JpaRepository<PodanieSpec
     List<PodanieSpecjalnosci> findByStatus(int status);
 
 
-    /*
-    @Query("SELECT k FROM Specjalnosci k WHERE " +
-            "(" +
-            ":phrase is null OR :phrase = '' OR "+
-            "upper(k.name) LIKE upper(:phrase) " +
-            ") " )
-    Page<Specjalnosci> delete(@Param("phrase") String k, Pageable pageable);
-*/
-
-
-    @Query("UPDATE User SET id_specjalnosci='" + ":id" + "' WHERE id='" + ":iduser" + "'"
-             )
-    void zmienSpecjalnosc(@Param("idspec") Long id1, @Param("iduser") Long id2);
 
 
 }

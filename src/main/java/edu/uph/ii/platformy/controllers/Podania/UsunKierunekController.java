@@ -24,7 +24,7 @@ public class UsunKierunekController {
     private KierunkiRepository kierunkiRepository;
 
     @RequestMapping(value="/usunKierunek.html",method = RequestMethod.GET)
-    public String showForm(Model model, @RequestParam("id") Optional<Long> id) {
+    public String deleteKierunek1(Model model, @RequestParam("id") Optional<Long> id) {
 
         //Kierunki kierunek = kierunkiRepository.findById(id.get());
         Optional<Kierunki> optionalKierunki = kierunkiRepository.findById(id.get());
@@ -36,7 +36,7 @@ public class UsunKierunekController {
     }
 
     @PostMapping(value = "/usunKierunek.html")
-    public String showProduktForm(Model model, @Valid @ModelAttribute("kierunek") Kierunki kierunek, BindingResult bindingResult){
+    public String deleteKierunek2(Model model, @Valid @ModelAttribute("kierunek") Kierunki kierunek, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
             return "usunKierunek";

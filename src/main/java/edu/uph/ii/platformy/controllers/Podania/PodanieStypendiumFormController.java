@@ -38,7 +38,7 @@ public class PodanieStypendiumFormController {
 
     @Secured("ROLE_STUDENT")
     @RequestMapping(value = "/stypendiaForm.html" , method = RequestMethod.GET)
-    public String showForm(Model model , @RequestParam("id") Long id){
+    public String showStypendiaForm(Model model , @RequestParam("id") Long id){
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -63,7 +63,7 @@ public class PodanieStypendiumFormController {
     @Secured("ROLE_STUDENT")
     @RequestMapping(value="/stypendiaForm.html", method= RequestMethod.POST)
     //@ResponseStatus(HttpStatus.CREATED)
-    public String processForm(@Valid @ModelAttribute("stypendiumPodanie") StypendiumPodanie stypendiumPodanie){
+    public String processStypendiaForm(@Valid @ModelAttribute("stypendiumPodanie") StypendiumPodanie stypendiumPodanie){
 
 
         stypendiumPodanie.setStatus(1);

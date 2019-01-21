@@ -9,11 +9,10 @@ import org.springframework.data.domain.Pageable;
 public interface SpecjalnosciService {
 
 
-    //Page<Specjalnosci> getAllSpecjalnosci(Pageable pageable);
+
 
     Specjalnosci getSpecjalnosci(Long id);
 
-    void deleteSpecjalnosci(Long id);
 
     void saveSpecjalnosci(Specjalnosci specjalnosci);
 }

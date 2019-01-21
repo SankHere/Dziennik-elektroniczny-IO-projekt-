@@ -35,7 +35,7 @@ public class UserFormController {
 
     @Secured("ROLE_DZIEKANAT")
     @RequestMapping(value="/userForm.html",params = "did",method= RequestMethod.GET)
-    public String showForm(Model model, Long id){
+    public String showUserForm(Model model, Long id){
 
         if(id != null) {
             model.addAttribute("user", userRepository.getOne(id));
@@ -48,7 +48,7 @@ public class UserFormController {
     @RequestMapping(value="/userForm.html", method= RequestMethod.POST)
 
     //@ResponseStatus(HttpStatus.CREATED)
-    public String processForm(@Valid @ModelAttribute("user") User user, BindingResult errors){
+    public String processUserForm(@Valid @ModelAttribute("user") User user, BindingResult errors){
 
         if(errors.hasErrors()){
             return "userForm";
@@ -61,12 +61,5 @@ public class UserFormController {
 
         return "redirect:userList.html";//po udanym dodaniu/edycji przekierowujemy na listę
     }
-
-//    @ModelAttribute("egzamin")
-//    public List<Egzamin> loadTypes(){
-//        List<Egzamin> types = userService.getAllTypes();
-//        // log.info("Ładowanie listy "+types.size()+" typów ");
-//        return types;
-//    }
 
 }

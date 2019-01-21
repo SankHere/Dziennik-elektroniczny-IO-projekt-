@@ -22,7 +22,7 @@ public class KierunkiListController {
 
 
     @RequestMapping(value="/kierunkiList.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String showStypendiaList(Model model){
+    public String showKierunkiList(Model model){
 
         List<Kierunki> kierunki = kierunkiRepository.findAllKierunkiUsingStatus(2);
 

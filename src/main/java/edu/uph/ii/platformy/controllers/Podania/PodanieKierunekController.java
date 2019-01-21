@@ -26,7 +26,7 @@ public class PodanieKierunekController {
         return "podanieKierunek";
     }
     @PostMapping(value = "/podanieKierunek.html")
-    public String showProduktForm(Model model, @Valid @ModelAttribute("kierunekNowy") Kierunki podanieKierunki, BindingResult bindingResult){
+    public String showPodanieKierunekForm(Model model, @Valid @ModelAttribute("kierunekNowy") Kierunki podanieKierunki, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
             return "podanieKierunek";

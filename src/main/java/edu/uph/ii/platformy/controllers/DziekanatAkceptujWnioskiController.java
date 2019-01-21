@@ -84,7 +84,7 @@ public class DziekanatAkceptujWnioskiController {
 
     //akceptowanie wniosków
     @RequestMapping(value = "/akceptujRekrutacja.html", method = RequestMethod.GET )
-    public String akceptujWniosek(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+    public String akceptujRekrutacja(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
         if(id>0) {
 
@@ -204,7 +204,7 @@ public class DziekanatAkceptujWnioskiController {
 
     //akceptowanie wniosków
     @RequestMapping(value = "/odrzucRekrutacja.html", method = RequestMethod.GET )
-    public String odrzucRekrutacje(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+    public String odrzucRekrutacje( @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
         KierunekPodanie kier = kierunekPodanieRepository.findById(id).get();
         kierunekPodanieRepository.delete(kier);
@@ -383,7 +383,7 @@ if(id>=1){
 
 
     @RequestMapping(value = "/odrzucSpecjalnosci.html", method = RequestMethod.GET )
-    public String odrzucSpecjalnosci(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+    public String odrzucSpecjalnosci( @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
         if(id>0) {
 
@@ -404,7 +404,7 @@ if(id>=1){
 
 
     @RequestMapping(value = "/odrzucUbezpieczenie.html", method = RequestMethod.GET )
-    public String odrzucUbezpieczenie(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+    public String odrzucUbezpieczenie(@RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
         if(id>0) {
 
@@ -423,7 +423,7 @@ if(id>=1){
     }
 
     @RequestMapping(value = "/odrzucUser.html", method = RequestMethod.GET )
-    public String odrzucUser(Model model , @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
+    public String odrzucUser( @RequestParam(name = "id",required = false,defaultValue = "-1") Long id){
 
         if(id>0) {
 

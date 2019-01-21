@@ -30,11 +30,11 @@ public class StypendiaListController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private KierunkiRepository kierunkiRepository;
+//    @Autowired
+//    private KierunkiRepository kierunkiRepository;
 
-    @Autowired
-    private StypendiumPodanieRepository stypendiumPodanieRepository;
+//    @Autowired
+//    private StypendiumPodanieRepository stypendiumPodanieRepository;
 
 //    @Autowired
 //    private StypendiumPodanie stypendiumPodanie;

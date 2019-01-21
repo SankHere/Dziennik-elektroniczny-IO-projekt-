@@ -17,13 +17,13 @@ public interface KierunkiRepository extends JpaRepository<Kierunki, Long> {
     @Query("SELECT kier FROM Kierunki kier WHERE kier.status = :status ")
     List<Kierunki> findAllKierunkiUsingStatus(@Param("status") int status);
 
-    @Query("SELECT k FROM Kierunki k WHERE " +
-            "(" +
-            ":phrase is null OR :phrase = '' OR "+
-            "upper(k.name) LIKE upper(:phrase) " +
-            ") " +
-            "AND " +
-            "(:liczbaMiejsc is null OR :liczbaMiejsc >= k.liczbaMiejsc) " )
-    Page<Kierunki> findAllKierunkiUsingFilter(@Param("phrase") String k, @Param("liczbaMiejsc") int liczbaMiejsc, Pageable pageable);
+//    @Query("SELECT k FROM Kierunki k WHERE " +
+//            "(" +
+//            ":phrase is null OR :phrase = '' OR "+
+//            "upper(k.name) LIKE upper(:phrase) " +
+//            ") " +
+//            "AND " +
+//            "(:liczbaMiejsc is null OR :liczbaMiejsc >= k.liczbaMiejsc) " )
+//    Page<Kierunki> findAllKierunkiUsingFilter(@Param("phrase") String k, @Param("liczbaMiejsc") int liczbaMiejsc, Pageable pageable);
 
 }

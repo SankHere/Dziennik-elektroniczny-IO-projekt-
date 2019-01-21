@@ -18,17 +18,6 @@ public class SpecjalnosciServiceImpl implements SpecjalnosciService {
     @Autowired
     private SpecjalnosciRepository specjalnosciRepositry;
 
-//
-//    @Override
-//    public Page<Specjalnosci> getAllSpecjalnosci(Pageable pageable) {
-//        Page page;
-//
-//            page = specjalnosciRepositry.findAll(pageable);
-//
-//
-//        return page;
-//
-//    }
 
     @Transactional
     @Override
@@ -38,15 +27,6 @@ public class SpecjalnosciServiceImpl implements SpecjalnosciService {
         Specjalnosci specjalnosci = optionalSpecjalnosci.orElseThrow(()->new SpecjalnosciNotFoundException(id));
         return specjalnosci;
 
-    }
-
-    @Override
-    public void deleteSpecjalnosci(Long id) {
-        if(specjalnosciRepositry.existsById(id) == true){
-            specjalnosciRepositry.deleteById(id);
-        }else{
-            throw new SpecjalnosciNotFoundException(id);
-        }
     }
 
     @Override

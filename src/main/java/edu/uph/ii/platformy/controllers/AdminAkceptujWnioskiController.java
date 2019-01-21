@@ -36,7 +36,7 @@ public class AdminAkceptujWnioskiController {
     private StypendiaRepository stypendiaRepository;
 
     @RequestMapping(value="/adminAkceptujWnioski.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String showWnioskiList(Model model){
+    public String showAdminAkceptujWnioski(Model model){
 //      Do akceptacji kierunków
         List<Kierunki> kierunki = kierunkiRepository.findAllKierunkiUsingStatus(1);
         model.addAttribute("kierunki", kierunki );
@@ -50,7 +50,7 @@ public class AdminAkceptujWnioskiController {
 
 
     @RequestMapping(value="/akceptujKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String akceptujKierunek(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+    public String akceptujKierunek(@RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
         Kierunki kier = kierunkiRepository.findById(id).get();
 
@@ -60,7 +60,7 @@ public class AdminAkceptujWnioskiController {
     }
 
     @RequestMapping(value="/odrzucKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String odrzucKierunek(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+    public String odrzucKierunek(@RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
     Kierunki kier = kierunkiRepository.findById(id).get();
 
@@ -71,7 +71,7 @@ public class AdminAkceptujWnioskiController {
 
 
     @RequestMapping(value="/deleteKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteKierunke(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+    public String deleteKierunke(@RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
         long help = (long) 4;
         Optional<Kierunki> opt = kierunkiRepository.findById(help);
         if(opt.isPresent()){
@@ -101,7 +101,7 @@ public class AdminAkceptujWnioskiController {
         return  "redirect:adminAkceptujWnioski.html";
     }
     @RequestMapping(value="/nieUsuwajKierunek.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String nieUsuwajKierunek(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+    public String nieUsuwajKierunek(@RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
         Kierunki kier = kierunkiRepository.findById(id).get();
         kier.setStatus(2);
@@ -110,7 +110,7 @@ public class AdminAkceptujWnioskiController {
     }
 
     @RequestMapping(value="/usunStudenta.html", method = {RequestMethod.GET, RequestMethod.POST})
-    public String usunStudenta(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
+    public String usunStudenta( @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
 
         User user = userRepository.findById(id).get();

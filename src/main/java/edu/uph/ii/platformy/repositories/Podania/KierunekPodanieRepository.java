@@ -14,6 +14,5 @@ public interface KierunekPodanieRepository extends JpaRepository<KierunekPodanie
 
   List<KierunekPodanie> findKierunekPodanieByStatus(int status);
 
-  @Query("UPDATE User SET id_kierunku='"+":idkier" + "'WHERE Id='"+":iduser" + "'")
-  void zmienKierunek(@Param("idkier") Long id1 , @Param("iduser") Long id2);
+
 }

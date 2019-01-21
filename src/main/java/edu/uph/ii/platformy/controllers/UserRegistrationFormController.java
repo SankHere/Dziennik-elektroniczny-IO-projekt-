@@ -48,7 +48,7 @@ public class UserRegistrationFormController {
     }
 
     @PostMapping("/registrationForm.html")
-    public String registration(@Valid @ModelAttribute("userCommand") User userForm, BindingResult bindingResult) {
+    public String registrations(@Valid @ModelAttribute("userCommand") User userForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "registrationForm";

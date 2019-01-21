@@ -42,7 +42,7 @@ public class KierunkiFormController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value="/kierunkiForm.html",method = RequestMethod.GET)
-    public String showForm(Model model, @RequestParam("id") Long id){
+    public String showKierunkiForm(Model model, @RequestParam("id") Long id){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipleName = authentication.getName();
@@ -66,7 +66,7 @@ public class KierunkiFormController {
     @Secured("ROLE_USER")
     @RequestMapping(value="/kierunkiForm.html", method= RequestMethod.POST)
     //@ResponseStatus(HttpStatus.CREATED)
-    public String processForm(@Valid @ModelAttribute("kierunekPodanie") KierunekPodanie kierunekPodanie){
+    public String processKierunkiForm(@Valid @ModelAttribute("kierunekPodanie") KierunekPodanie kierunekPodanie){
         //saveKierunekPodanie(a);
 
         kierunekPodanie.setStatus(1);

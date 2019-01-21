@@ -30,8 +30,8 @@ public class SpecjalnosciListController {
     @Autowired
     private SpecjalnosciRepository specjalnosciRepository;
 
-    @Autowired
-    private SpecjalnosciService specjalnosciService;
+//    @Autowired
+//    private SpecjalnosciService specjalnosciService;
 
     @Autowired
     private UserRepository userRepository;
